@@ -42,8 +42,21 @@
 </head>
 <body class="bg-navyDark text-white font-sans antialiased selection:bg-goldPrimary selection:text-black transition-all duration-300">
 
+    <!-- Global Notification Banner -->
+    <div id="globalNotification" class="hidden fixed top-0 left-0 right-0 bg-goldPrimary text-black p-3 text-center font-bold z-50 shadow-lg flex justify-between items-center px-6">
+        <span id="notifText"></span>
+        <button onclick="document.getElementById('globalNotification').classList.add('hidden')" class="text-black font-extrabold">&times;</button>
+    </div>
+
+    <!-- Promotional Banner Area -->
+    <div id="promoBanner" class="bg-gradient-to-r from-yellow-600 via-goldPrimary to-yellow-600 p-3 text-center cursor-pointer hover:opacity-95 transition shadow-md">
+        <p class="text-black font-extrabold text-xs sm:text-sm animate-pulse tracking-wide">
+            <i class="fa-solid fa-gift mr-2"></i> MEGA GIVEAWAY & OFFERS ACTIVE! Join the V Media Community Chat below!
+        </p>
+    </div>
+
     <!-- Header / Navbar -->
-    <header class="border-b border-gray-800 bg-navyDark/90 sticky top-0 z-50 backdrop-blur-md">
+    <header class="border-b border-gray-800 bg-navyDark/95 sticky top-0 z-40 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="v-logo-wrapper">
                 <div class="v-logo-box"><span class="v-logo-text">V</span></div>
@@ -53,7 +66,6 @@
             <nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-300 items-center">
                 <a href="#services" class="hover:text-goldPrimary transition" id="navServices">Services</a>
                 <a href="#features" class="hover:text-goldPrimary transition" id="navFeatures">Features</a>
-                <!-- Social Media Accounts Header Links -->
                 <div class="flex items-center space-x-3 border-l border-gray-700 pl-4">
                     <a href="https://instagram.com" target="_blank" class="hover:text-goldPrimary transition"><i class="fab fa-instagram"></i></a>
                     <a href="https://t.me" target="_blank" class="hover:text-goldPrimary transition"><i class="fab fa-telegram"></i></a>
@@ -62,7 +74,6 @@
             </nav>
 
             <div class="flex items-center space-x-3">
-                <!-- 7-Language Switcher Dropdown -->
                 <select id="langSwitcher" onchange="changeLanguage()" class="bg-navyCard text-white text-xs font-semibold rounded-lg p-2 border border-goldPrimary/50 outline-none cursor-pointer">
                     <option value="English">English</option>
                     <option value="Hindi">Hindi</option>
@@ -98,7 +109,6 @@
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-5">
                     <button onclick="openModal('signupModal')" class="w-full sm:w-auto bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-extrabold px-8 py-4 rounded-xl shadow-xl shadow-goldPrimary/20 hover:scale-105 transition" id="heroBtnCreate">Create Free Account</button>
-                    <a href="#services" class="w-full sm:w-auto bg-navyCard border border-gray-800 text-gray-300 font-bold px-8 py-4 rounded-xl hover:bg-gray-800 hover:text-white transition text-center" id="heroBtnExplore">Explore Services</a>
                 </div>
             </div>
         </section>
@@ -133,18 +143,52 @@
         </section>
     </div>
 
-    <!-- Secret Founder / Admin Dashboard View (Hidden until founder email logs in) -->
+    <!-- Secret Founder / Admin Dashboard View -->
     <div id="adminDashboard" class="hidden min-h-screen p-6 sm:p-10 max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b border-gray-800 pb-6 gap-4">
             <div>
                 <h1 class="text-3xl font-black text-goldPrimary">V MEDIA - FOUNDER PANEL</h1>
-                <p class="text-sm text-gray-400">Secured Full Control & Management Dashboard (100% Access)</p>
+                <p class="text-sm text-gray-400">Secured Full Control, Payments, & Community Management Dashboard</p>
             </div>
             <button onclick="logoutAdmin()" class="bg-red-600 hover:bg-red-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg">Logout Secret Panel</button>
         </div>
 
-        <!-- Admin Metrics Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+        <!-- Payment & QR Management Module -->
+        <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-goldPrimary"><i class="fa-solid fa-wallet mr-2"></i> Payment Gateways & QR Configuration</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-gray-400 text-xs mb-1">UPI ID</label>
+                    <input type="text" id="upiId" placeholder="e.g. vinayak@upi" class="w-full p-3 rounded-xl bg-navyDark border border-gray-700 text-white outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-gray-400 text-xs mb-1">Bank Name / IFSC</label>
+                    <input type="text" id="bankInfo" placeholder="e.g. Kotak / KKBK000123" class="w-full p-3 rounded-xl bg-navyDark border border-gray-700 text-white outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-gray-400 text-xs mb-1">QR Code Image Link</label>
+                    <input type="text" id="qrImageUrl" placeholder="Paste QR image URL here" class="w-full p-3 rounded-xl bg-navyDark border border-gray-700 text-white outline-none text-sm">
+                </div>
+            </div>
+            <button onclick="savePaymentSettings()" class="mt-4 bg-goldPrimary text-black font-bold px-6 py-2.5 rounded-xl hover:opacity-90 transition text-sm">Save Payment Settings</button>
+        </div>
+
+        <!-- Global Notification & Giveaway Control -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
+                <h3 class="text-xl font-bold mb-4 text-goldPrimary"><i class="fa-solid fa-bullhorn mr-2"></i> Global Notification System</h3>
+                <input type="text" id="adminNotifInput" placeholder="Type global announcement..." class="w-full p-3 mb-3 rounded-xl bg-navyDark border border-gray-700 text-white outline-none text-sm">
+                <button onclick="sendGlobalNotification()" class="bg-goldPrimary text-black font-bold px-6 py-2.5 rounded-xl hover:opacity-90 transition text-sm">Broadcast Notice</button>
+            </div>
+            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
+                <h3 class="text-xl font-bold mb-4 text-goldPrimary"><i class="fa-solid fa-gift mr-2"></i> Giveaway / Offer Broadcast</h3>
+                <input type="text" id="adminGiveawayInput" placeholder="Giveaway message for group..." class="w-full p-3 mb-3 rounded-xl bg-navyDark border border-gray-700 text-white outline-none text-sm">
+                <button onclick="runGiveaway()" class="bg-goldPrimary text-black font-bold px-6 py-2.5 rounded-xl hover:opacity-90 transition text-sm">Launch Giveaway to Group</button>
+            </div>
+        </div>
+
+        <!-- Founder Stats Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
                 <p class="text-gray-400 text-sm">System Status</p>
                 <h3 class="text-2xl font-bold text-green-400 mt-1">Operational & Active</h3>
@@ -158,42 +202,47 @@
                 <h3 class="text-2xl font-bold text-white mt-1">Full Control</h3>
             </div>
         </div>
-
-        <!-- Management Sections: User Management, Service History, Status, Activities -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
-                <h3 class="text-xl font-bold mb-2 text-goldPrimary"><i class="fa-solid fa-users-gear mr-2"></i> User Management</h3>
-                <p class="text-sm text-gray-400 mb-4">View total users, virtual IDs, and manage client profiles.</p>
-                <button onclick="alert('User Management module active.')" class="bg-gray-800 hover:bg-goldPrimary hover:text-black font-bold px-4 py-2 rounded-xl text-sm transition">Access Users</button>
+    </div>
+        <!-- Floating Chat & Support Widgets -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <!-- Interactive Group & Personal Chat Box -->
+        <div id="chatBox" class="hidden mb-3 w-80 sm:w-96 h-[450px] bg-navyCard border border-goldPrimary rounded-2xl p-4 shadow-2xl flex flex-col">
+            <div class="flex justify-between items-center border-b border-gray-800 pb-2 mb-2">
+                <div>
+                    <h4 class="font-bold text-goldPrimary text-sm">V Media Community Hub</h4>
+                    <div class="flex gap-3 text-xs mt-1">
+                        <button onclick="switchChatMode('GROUP')" id="btnGroupMode" class="text-goldPrimary font-bold underline">Group Chat</button>
+                        <button onclick="switchChatMode('PERSONAL')" id="btnPersonalMode" class="text-gray-400 hover:text-white">Private Support (DM)</button>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('chatBox').classList.add('hidden')" class="text-gray-400 hover:text-white text-lg">&times;</button>
             </div>
-            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
-                <h3 class="text-xl font-bold mb-2 text-goldPrimary"><i class="fa-solid fa-list-check mr-2"></i> Service Management & History</h3>
-                <p class="text-sm text-gray-400 mb-4">Control active services, check past order histories, and audit records.</p>
-                <button onclick="alert('Service History & Management active.')" class="bg-gray-800 hover:bg-goldPrimary hover:text-black font-bold px-4 py-2 rounded-xl text-sm transition">Manage Services</button>
+            
+            <div id="chatMessages" class="flex-1 overflow-y-auto mb-3 text-xs text-gray-300 space-y-2 p-2 bg-navyDark/50 rounded-xl">
+                <!-- Chat messages loaded dynamically -->
             </div>
-            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
-                <h3 class="text-xl font-bold mb-2 text-goldPrimary"><i class="fa-solid fa-chart-line mr-2"></i> Current Status & Analytics</h3>
-                <p class="text-sm text-gray-400 mb-4">Monitor real-time system performance and current running orders.</p>
-                <button onclick="alert('Current Status module active.')" class="bg-gray-800 hover:bg-goldPrimary hover:text-black font-bold px-4 py-2 rounded-xl text-sm transition">View Status</button>
-            </div>
-            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
-                <h3 class="text-xl font-bold mb-2 text-goldPrimary"><i class="fa-solid fa-shield-dog mr-2"></i> Complete Activities Control</h3>
-                <p class="text-sm text-gray-400 mb-4">Track security alerts, database queries, and system logs.</p>
-                <button onclick="alert('Activity log panel active.')" class="bg-gray-800 hover:bg-goldPrimary hover:text-black font-bold px-4 py-2 rounded-xl text-sm transition">View Logs</button>
+            
+            <div class="flex gap-2">
+                <input type="text" id="chatInput" placeholder="Type a message or giveaway reply..." class="flex-1 p-2.5 bg-navyDark border border-gray-700 rounded-xl text-xs outline-none text-white">
+                <button onclick="sendChatMessage()" class="bg-goldPrimary text-black font-bold px-4 py-2 rounded-xl text-xs hover:opacity-90 transition">Send</button>
             </div>
         </div>
-    </div>
 
-    <!-- Floating 24/7 WhatsApp Support Widget -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <div id="waMenu" class="hidden mb-3 bg-navyCard border border-goldPrimary rounded-2xl p-4 shadow-2xl w-64">
+        <!-- Floating Buttons -->
+        <div class="flex gap-3">
+            <button onclick="document.getElementById('chatBox').classList.toggle('hidden')" class="bg-goldPrimary hover:bg-yellow-600 text-black w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-105">
+                <i class="fa-solid fa-comments text-2xl"></i>
+            </button>
+            <button onclick="document.getElementById('waMenu').classList.toggle('hidden')" class="bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-105">
+                <i class="fab fa-whatsapp text-3xl"></i>
+            </button>
+        </div>
+        
+        <div id="waMenu" class="hidden mt-3 bg-navyCard border border-goldPrimary rounded-2xl p-4 shadow-2xl w-64">
             <p class="text-xs text-gray-400 mb-2 font-bold uppercase tracking-wider">24x7 WhatsApp Support:</p>
             <a href="https://wa.me/919702688696" target="_blank" class="block text-white hover:text-goldPrimary text-sm mb-2"><i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 97026 88696</a>
             <a href="https://wa.me/918808722351" target="_blank" class="block text-white hover:text-goldPrimary text-sm"><i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 88087 22351</a>
         </div>
-        <button onclick="document.getElementById('waMenu').classList.toggle('hidden')" class="bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-105">
-            <i class="fab fa-whatsapp text-3xl"></i>
-        </button>
     </div>
 
     <!-- Footer -->
@@ -207,13 +256,12 @@
         <div class="bg-navyCard p-8 rounded-2xl w-full max-w-md border border-goldPrimary/40 relative shadow-2xl">
             <button onclick="closeModal('signupModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
             <div class="text-center mb-6">
-                <div class="v-logo-wrapper scale-90 mb-2"><div class="v-logo-box"><span class="v-logo-text">V</span></div></div>
-                <h2 class="text-white text-2xl font-bold" id="modalSignupTitle">Create Account</h2>
-                <p class="text-gray-400 text-sm" id="modalSignupSub">Get your Unique Virtual ID instantly.</p>
+                <h2 class="text-white text-2xl font-bold">Create Account</h2>
+                <p class="text-gray-400 text-sm">Get your Unique Virtual ID instantly.</p>
             </div>
-            <input type="email" id="signupEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-navyDark border border-gray-700 text-white focus:border-goldPrimary outline-none text-sm">
-            <input type="password" id="signupPass" placeholder="Password" class="w-full p-3.5 mb-6 rounded-xl bg-navyDark border border-gray-700 text-white focus:border-goldPrimary outline-none text-sm">
-            <button onclick="handleSignup()" class="w-full bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-extrabold py-3.5 rounded-xl shadow-lg shadow-goldPrimary/20 hover:opacity-90 transition text-sm" id="modalSignupBtn">Register & Generate ID</button>
+            <input type="email" id="signupEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-navyDark border border-gray-700 text-white outline-none text-sm">
+            <input type="password" id="signupPass" placeholder="Password" class="w-full p-3.5 mb-6 rounded-xl bg-navyDark border border-gray-700 text-white outline-none text-sm">
+            <button onclick="handleSignup()" class="w-full bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-extrabold py-3.5 rounded-xl shadow-lg transition text-sm">Register & Generate ID</button>
         </div>
     </div>
 
@@ -222,26 +270,230 @@
         <div class="bg-navyCard p-8 rounded-2xl w-full max-w-md border border-gray-700 relative shadow-2xl">
             <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
             <div class="text-center mb-6">
-                <div class="v-logo-wrapper scale-90 mb-2"><div class="v-logo-box"><span class="v-logo-text">V</span></div></div>
-                <h2 class="text-white text-2xl font-bold" id="modalLoginTitle">Panel Login</h2>
-                <p class="text-gray-400 text-sm" id="modalLoginSub">Founder login automatically unlocks secret admin panel.</p>
+                <h2 class="text-white text-2xl font-bold">Panel Login</h2>
+                <p class="text-gray-400 text-sm">Founder login automatically unlocks secret admin panel.</p>
             </div>
-            <input type="email" id="loginEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-navyDark border border-gray-700 text-white focus:border-goldPrimary outline-none text-sm">
-            <input type="password" id="loginPass" placeholder="Password" class="w-full p-3.5 mb-6 rounded-xl bg-navyDark border border-gray-700 text-white focus:border-goldPrimary outline-none text-sm">
-            <button onclick="handleLogin()" class="w-full bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-bold py-3.5 rounded-xl hover:opacity-90 transition text-sm" id="modalLoginBtn">Login</button>
+            <input type="email" id="loginEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-navyDark border border-gray-700 text-white outline-none text-sm">
+            <input type="password" id="loginPass" placeholder="Password" class="w-full p-3.5 mb-6 rounded-xl bg-navyDark border border-gray-700 text-white outline-none text-sm">
+            <button onclick="handleLogin()" class="w-full bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-bold py-3.5 rounded-xl transition text-sm">Login</button>
         </div>
     </div>
 
-    <!-- Master Script & Multi-lingual Translation Support -->
+    <!-- Comprehensive Master Script -->
     <script>
-        // 7 Languages Dictionary
+        // Firebase Setup (Replace with your own project configuration details)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        function handleSignup() {
+            const email = document.getElementById('signupEmail').value;
+            const pass = document.getElementById('signupPass').value;
+            auth.createUserWithEmailAndPassword(email, pass)
+                .then(() => { alert("Account Created Successfully!"); closeModal('signupModal'); })
+                .catch(err => alert(err.message));
+        }
+
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPass').value;
+            auth.signInWithEmailAndPassword(email, pass)
+                .then(() => { closeModal('loginModal'); })
+                .catch(err => alert(err.message));
+        }
+
+        function logoutAdmin() {
+            auth.signOut().then(() => { location.reload(); });
+        }
+
+        // Save Payment Settings
+        function savePaymentSettings() {
+            const upi = document.getElementById('upiId').value;
+            const bank = document.getElementById('bankInfo').value;
+            const qr = document.getElementById('qrImageUrl').value;
+
+            db.collection("settings").doc("payment_config").set({
+                upiId: upi,
+                bankDetails: bank,
+                qrCodeUrl: qr,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => alert("Payment Gateways & QR Settings Updated Successfully!"))
+            .catch(err => alert("Error: " + err.message));
+        }
+
+        // Global Broadcast Notification
+        function sendGlobalNotification() {
+            const msg = document.getElementById('adminNotifInput').value;
+            if(!msg) return;
+            db.collection("system").doc("notification").set({
+                message: msg,
+                active: true,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => alert("Global Notification Broadcasted!"));
+        }
+
+        db.collection("system").doc("notification").onSnapshot(doc => {
+            if(doc.exists && doc.data().active) {
+                document.getElementById('notifText').innerText = doc.data().message;
+                document.getElementById('globalNotification').classList.remove('hidden');
+            }
+        });
+
+        // Giveaway Broadcast to Group Chat
+        function runGiveaway() {
+            const msg = document.getElementById('adminGiveawayInput').value;
+            if(!msg) return;
+            db.collection("group_chat").add({
+                sender: "FOUNDER (GIVEAWAY)",
+                text: "🎁 GIVEAWAY ALERT: " + msg,
+                isGiveaway: true,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => alert("Giveaway broadcasted successfully to group chat!"));
+        }
+
+        // Chat System Management (Group vs Personal DM)
+        let chatMode = "GROUP"; // Default Group
+
+        function switchChatMode(mode) {
+            chatMode = mode;
+            if(mode === "GROUP") {
+                document.getElementById('btnGroupMode').className = "text-goldPrimary font-bold underline";
+                document.getElementById('btnPersonalMode').className = "text-gray-400 hover:text-white";
+            } else {
+                document.getElementById('btnPersonalMode').className = "text-goldPrimary font-bold underline";
+                document.getElementById('btnGroupMode').className = "text-gray-400 hover:text-white";
+            }
+            loadMessages();
+        }
+
+        function sendChatMessage() {
+            const text = document.getElementById('chatInput').value;
+            const user = auth.currentUser;
+            if(!text) return;
+
+            const collectionName = chatMode === "GROUP" ? "group_chat" : "private_chats";
+            const senderName = user ? user.email : "Guest User";
+
+            db.collection(collectionName).add({
+                sender: senderName,
+                text: text,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            document.getElementById('chatInput').value = '';
+        }
+
+        function loadMessages() {
+            const collectionName = chatMode === "GROUP" ? "group_chat" : "private_chats";
+            db.collection(collectionName).orderBy("timestamp", "asc").onSnapshot(snapshot => {
+                const chatDiv = document.getElementById('chatMessages');
+                chatDiv.innerHTML = "";
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const highlightClass = data.isGiveaway ? "bg-yellow-600/30 border border-goldPrimary p-2 rounded-lg my-1" : "bg-navyDark p-2 rounded-lg";
+                    chatDiv.innerHTML += `<div class="${highlightClass}"><b class="text-goldPrimary">${data.sender}:</b> ${data.text}</div>`;
+                });
+                chatDiv.scrollTop = chatDiv.scrollHeight;
+            });
+        }
+        
+        // Initial chat load
+        loadMessages();
+
+        // Multi-lingual Translation Dictionary & Logic
         const translations = {
             "English": {
                 navServices: "Services", navFeatures: "Features", loginNavBtn: "Login", getStartedNavBtn: "Get Started",
                 heroBadge: "Fastest & Most Reliable SMM Services",
-                heroHeadingLine1: "Boost Your Social Presence", heroHeadingLine2: "With V Media",
+                heroHeading: "Boost Your Social Presence <br/>With V Media",
                 heroDesc: "The ultimate platform for creators, influencers, and agencies to scale social media growth instantly with automated, high-quality services.",
-                heroBtnCreate: "Create Free Account", heroBtnExplore: "Explore Services",
+                heroBtnCreate: "Create Free Account",
                 feature1Title: "Instant Delivery", feature1Desc: "Orders begin processing automatically within seconds through our advanced API system.",
                 feature2Title: "100% Secure & Stable", feature2Desc: "Safe payment integrations and protected user data architecture designed for top-tier agency work.",
-                feature3Title: "24/7 Support", feature3Desc: "Dedicated support tea
+                feature3Title: "24/7 Support", feature3Desc: "Dedicated support team ready to resolve your queries and assist with large bulk orders."
+            },
+            "Hindi": {
+                navServices: "सेवाएं", navFeatures: "विशेषताएं", loginNavBtn: "लॉगिन", getStartedNavBtn: "शुरू करें",
+                heroBadge: "सबसे तेज और विश्वसनीय SMM सेवाएं",
+                heroHeading: "अपनी सोशल प्रेजेंस बढ़ाएं <br/>V Media के साथ",
+                heroDesc: "ऑटोमेटेड और हाई-क्वालिटी सेवाओं के साथ क्रिएटर्स, इनफ्लुएंसर्स और एजेंसियों के लिए सोशल मीडिया ग्रोथ बढ़ाने का बेहतरीन प्लेटफॉर्म।",
+                heroBtnCreate: "फ्री अकाउंट बनाएं",
+                feature1Title: "तुरंत डिलीवरी", feature1Desc: "हमारे एडवांस API सिस्टम के माध्यम से सेकंडों में ऑटोमैटिक प्रोसेसिंग शुरू होती है।",
+                feature2Title: "100% सुरक्षित और स्थिर", feature2Desc: "शीर्ष-स्तरीय एजेंसी के काम के लिए सुरक्षित भुगतान एकीकरण और डेटा सुरक्षा।",
+                feature3Title: "24/7 सहायता", feature3Desc: "आपके प्रश्नों को हल करने और बड़े ऑर्डर में सहायता के लिए समर्पित सपोर्ट टीम।"
+            },
+            "Hinglish": {
+                navServices: "Services", navFeatures: "Features", loginNavBtn: "Login", getStartedNavBtn: "Get Started",
+                heroBadge: "Sabse Fast & Reliable SMM Services",
+                heroHeading: "Apni Social Presence Badhao <br/>V Media Ke Saath",
+                heroDesc: "Creators, influencers aur agencies ke liye social media growth ko instantly scale karne ka ultimate platform.",
+                heroBtnCreate: "Free Account Banao",
+                feature1Title: "Instant Delivery", feature1Desc: "Advanced API system ke zariye seconds mein automatic processing shuru hoti hai.",
+                feature2Title: "100% Secure & Stable", feature2Desc: "Safe payment integration aur protected user data architecture.",
+                feature3Title: "24/7 Support", feature3Desc: "Dedicated support team aapke queries ko resolve karne ke liye hamesha taiyar hai."
+            }
+        };
+
+        function changeLanguage() {
+            const lang = document.getElementById('langSwitcher').value;
+            const t = translations[lang] || translations["English"];
+            
+            if(document.getElementById('navServices')) document.getElementById('navServices').innerText = t.navServices;
+            if(document.getElementById('navFeatures')) document.getElementById('navFeatures').innerText = t.navFeatures;
+            if(document.getElementById('loginNavBtn')) document.getElementById('loginNavBtn').innerText = t.loginNavBtn;
+            if(document.getElementById('getStartedNavBtn')) document.getElementById('getStartedNavBtn').innerText = t.getStartedNavBtn;
+            if(document.getElementById('heroBadge')) document.getElementById('heroBadge').innerText = t.heroBadge;
+            if(document.getElementById('heroHeading')) document.getElementById('heroHeading').innerHTML = t.heroHeading;
+            if(document.getElementById('heroDesc')) document.getElementById('heroDesc').innerText = t.heroDesc;
+            if(document.getElementById('heroBtnCreate')) document.getElementById('heroBtnCreate').innerText = t.heroBtnCreate;
+            if(document.getElementById('feature1Title')) document.getElementById('feature1Title').innerText = t.feature1Title;
+            if(document.getElementById('feature1Desc')) document.getElementById('feature1Desc').innerText = t.feature1Desc;
+            if(document.getElementById('feature2Title')) document.getElementById('feature2Title').innerText = t.feature2Title;
+            if(document.getElementById('feature2Desc')) document.getElementById('feature2Desc').innerText = t.feature2Desc;
+            if(document.getElementById('feature3Title')) document.getElementById('feature3Title').innerText = t.feature3Title;
+            if(document.getElementById('feature3Desc')) document.getElementById('feature3Desc').innerText = t.feature3Desc;
+
+            if(lang === "Urdu" || lang === "Arabic") {
+                document.body.classList.add('rtl');
+                document.body.classList.remove('ltr');
+            } else {
+                document.body.classList.add('ltr');
+                document.body.classList.remove('rtl');
+            }
+        }
+
+        // Auth State & Panel Switcher
+        auth.onAuthStateChanged(user => {
+            if (user && user.email === "vinayakglobaldream@gmail.com") {
+                document.getElementById('publicView').classList.add('hidden');
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                
+                // Load saved payment configs in admin panel
+                db.collection("settings").doc("payment_config").get().then(doc => {
+                    if(doc.exists) {
+                        document.getElementById('upiId').value = doc.data().upiId || "";
+                        document.getElementById('bankInfo').value = doc.data().bankDetails || "";
+                        document.getElementById('qrImageUrl').value = doc.data().qrCodeUrl || "";
+                    }
+                });
+            } else {
+                document.getElementById('publicView').classList.remove('hidden');
+                document.getElementById('adminDashboard').classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
