@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V Media - Premium SMM Panel</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navyDark: '#0A0F1D',
+                        navyCard: '#111827',
+                        goldPrimary: '#D4AF37',
+                        goldLight: '#F3E5AB',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-navyDark text-white font-sans antialiased selection:bg-goldPrimary selection:text-black">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-gray-800 bg-navyDark/9ahl sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-goldPrimary to-goldLight flex items-center justify-center shadow-lg shadow-goldPrimary/20">
+                    <span class="text-black font-extrabold text-xl">V</span>
+                </div>
+                <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-white via-goldLight to-goldPrimary bg-clip-text text-transparent">V MEDIA</span>
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                <a href="#services" class="hover:text-goldPrimary transition">Services</a>
+                <a href="#api" class="hover:text-goldPrimary transition">API</a>
+                <a href="#about" class="hover:text-goldPrimary transition">About Us</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="#login" class="text-sm font-semibold text-gray-300 hover:text-white px-4 py-2 transition">Login</a>
+                <a href="#signup" class="bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-bold text-sm px-5 py-2.5 rounded-xl shadow-lg shadow-goldPrimary/20 hover:opacity-90 transition transform hover:-translate-y-0.5">Get Started</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden py-24 lg:py-32">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-600/10 via-transparent to-transparent pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-flex items-center space-x-2 bg-goldPrimary/10 border border-goldPrimary/30 rounded-full px-4 py-1.5 text-xs font-semibold text-goldLight mb-6">
+                <i class="fa-solid fa-bolt text-goldPrimary"></i>
+                <span>Fastest & Most Reliable SMM Services</span>
+            </span>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-8">
+                Boost Your Social Presence <br/>
+                <span class="bg-gradient-to-r from-goldPrimary via-yellow-200 to-goldPrimary bg-clip-text text-transparent">With V Media</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-gray-400 mb-10">
+                The ultimate platform for creators, influencers, and agencies to scale social media growth instantly with automated, high-quality services.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-5">
+                <a href="#signup" class="w-full sm:w-auto bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-extrabold px-8 py-4 rounded-xl shadow-xl shadow-goldPrimary/20 hover:scale-105 transition">Create Free Account</a>
+                <a href="#services" class="w-full sm:w-auto bg-navyCard border border-gray-800 text-gray-300 font-bold px-8 py-4 rounded-xl hover:bg-gray-800 hover:text-white transition">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="py-20 bg-navyCard/50 border-y border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-navyCard border border-gray-800/80 shadow-xl relative group hover:border-goldPrimary/50 transition">
+                    <div class="w-12 h-12 rounded-lg bg-goldPrimary/10 text-goldPrimary flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Instant Delivery</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Orders begin processing automatically within seconds through our advanced API system.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-navyCard border border-gray-800/80 shadow-xl relative group hover:border-goldPrimary/50 transition">
+                    <div class="w-12 h-12 rounded-lg bg-goldPrimary/10 text-goldPrimary flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">100% Secure & Stable</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Safe payment integrations and protected user data architecture designed for top-tier agency work.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-navyCard border border-gray-800/80 shadow-xl relative group hover:border-goldPrimary/50 transition">
+                    <div class="w-12 h-12 rounded-lg bg-goldPrimary/10 text-goldPrimary flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">24/7 Support</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Dedicated support team ready to resolve your queries and assist with large bulk orders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800 text-center text-gray-500 text-sm">
+        <p>&copy; 2026 V Media. All rights reserved. Built for professional social scaling.</p>
+    </footer>
+
+</body>
+</html>
