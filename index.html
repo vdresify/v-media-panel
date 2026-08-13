@@ -6,12 +6,7 @@
     <title>V Media - Ultimate Master SMM Panel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .v-logo-wrapper { perspective: 1000px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; }
-        .v-logo-box { width: 42px; height: 42px; background: linear-gradient(135deg, #0A0F1D 0%, #1a2942 100%); border: 2px solid #D4AF37; border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; transition: transform 0.5s ease; }
-        .v-logo-text { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 26px; background: linear-gradient(0deg, #D4AF37 0%, #F3E5AB 50%, #FFFFFF 100%); -webkit-background-clip: text; color: transparent; }
-        .brand-title { font-weight: 900; letter-spacing: 1px; background: linear-gradient(to right, #FFFFFF, #D4AF37); -webkit-background-clip: text; color: transparent; margin-left: 10px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#0A0F1D] text-white font-sans">
 
@@ -23,53 +18,169 @@
                 <span class="brand-title">MEDIA</span>
             </a>
             <div class="flex items-center space-x-4">
-                <button onclick="openModal('loginModal')" class="text-gray-300 hover:text-white">Login</button>
-                <button onclick="openModal('signupModal')" class="bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-bold px-4 py-2 rounded-xl">Get Started</button>
+                <button onclick="openModal('loginModal')" class="text-gray-300 hover:text-white text-sm font-semibold">Login</button>
+                <button onclick="openModal('signupModal')" class="bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-bold px-4 py-2 rounded-xl text-sm shadow-lg">Get Started</button>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="py-24 text-center">
-        <h1 class="text-5xl font-black mb-6">Boost Your Social Presence <br/> <span class="text-yellow-500">With V Media</span></h1>
-        <p class="text-gray-400 max-w-xl mx-auto mb-10">The ultimate platform for creators, influencers, and agencies to scale growth instantly.</p>
-        <button onclick="openModal('signupModal')" class="bg-yellow-500 text-black font-bold px-8 py-4 rounded-xl">Create Free Account</button>
+    <section class="py-20 text-center">
+        <h1 class="text-4xl sm:text-6xl font-black mb-6">Boost Your Social Presence <br/> <span class="text-yellow-500">With V Media</span></h1>
+        <p class="text-gray-400 max-w-xl mx-auto mb-10 text-sm sm:text-base">The ultimate professional platform for creators, influencers, and agencies to scale growth instantly with automated tools.</p>
+        <button onclick="openModal('signupModal')" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-4 rounded-xl shadow-lg transition">Create Free Account</button>
     </section>
 
     <!-- Features -->
-    <section class="py-20 bg-gray-900/50">
+    <section class="py-16 bg-gray-900/50 border-y border-gray-800">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="p-8 rounded-2xl bg-gray-800 border border-gray-700">
+            <div class="p-8 rounded-2xl bg-gray-800/80 border border-gray-700 shadow-xl">
                 <i class="fa-solid fa-bolt text-yellow-500 text-3xl mb-4"></i>
                 <h3 class="text-xl font-bold mb-2">Instant Delivery</h3>
-                <p class="text-gray-400 text-sm">Automated processing within seconds.</p>
+                <p class="text-gray-400 text-sm">Automated order processing within seconds across all channels.</p>
             </div>
-            <div class="p-8 rounded-2xl bg-gray-800 border border-gray-700">
+            <div class="p-8 rounded-2xl bg-gray-800/80 border border-gray-700 shadow-xl">
                 <i class="fa-solid fa-shield-halved text-yellow-500 text-3xl mb-4"></i>
                 <h3 class="text-xl font-bold mb-2">100% Secure</h3>
-                <p class="text-gray-400 text-sm">Protected data architecture for agencies.</p>
+                <p class="text-gray-400 text-sm">Protected data architecture built specifically for modern agencies.</p>
             </div>
-            <div class="p-8 rounded-2xl bg-gray-800 border border-gray-700">
+            <div class="p-8 rounded-2xl bg-gray-800/80 border border-gray-700 shadow-xl">
                 <i class="fa-solid fa-headset text-yellow-500 text-3xl mb-4"></i>
                 <h3 class="text-xl font-bold mb-2">24/7 Support</h3>
-                <p class="text-gray-400 text-sm">Dedicated team for your bulk orders.</p>
+                <p class="text-gray-400 text-sm">Dedicated management team available round the clock for bulk orders.</p>
             </div>
         </div>
     </section>
-        <!-- Secret Founder / Admin Dashboard View -->
-    <div id="adminDashboard" class="hidden min-h-screen p-6 sm:p-10 max-w-7xl mx-auto">
+        <!-- User Main Dashboard (SMM Panel Core) -->
+    <div id="userDashboard" class="hidden min-h-screen p-4 sm:p-10 max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b border-gray-800 pb-6 gap-4">
+            <div>
+                <h1 class="text-3xl font-black text-yellow-500">V MEDIA - CLIENT DASHBOARD</h1>
+                <p class="text-sm text-gray-400">Manage orders, check live pricing, and add funds instantly.</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="bg-gray-800 border border-yellow-500/40 px-4 py-2 rounded-xl text-sm">
+                    <span class="text-gray-400">Balance:</span> <b id="userWalletBalance" class="text-yellow-500">₹0.00</b>
+                </div>
+                <button onclick="auth.signOut().then(()=>location.reload())" class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-xl text-sm transition">Logout</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl">
+                <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-cart-plus mr-2"></i> Place New Order</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-400 text-xs mb-1">Service Category</label>
+                        <select id="orderCategory" class="w-full p-3.5 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
+                            <option value="instagram">Instagram Followers & Likes</option>
+                            <option value="youtube">YouTube Views & Subscribers</option>
+                            <option value="livestream">Live Streaming Engagement (Voice/Video Apps)</option>
+                            <option value="telegram">Telegram Members & Post Views</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-xs mb-1">Select Specific Service</label>
+                        <select id="orderService" class="w-full p-3.5 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
+                            <option value="101">High Quality Followers - [Ref: 30D] - ₹150 / 1000</option>
+                            <option value="102">Instant Non-Drop Likes - ₹50 / 1000</option>
+                            <option value="201">Real Active Live Stream Viewers - ₹300 / 1000</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-xs mb-1">Target Link / Profile URL</label>
+                        <input type="text" id="orderLink" placeholder="https://..." class="w-full p-3.5 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-400 text-xs mb-1">Quantity</label>
+                            <input type="number" id="orderQuantity" placeholder="1000" oninput="calculateTotal()" class="w-full p-3.5 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-gray-400 text-xs mb-1">Total Charge (₹)</label>
+                            <input type="text" id="orderTotalCharge" readonly placeholder="₹0.00" class="w-full p-3.5 rounded-xl bg-[#0A0F1D] border border-gray-700 text-yellow-500 font-bold outline-none text-sm">
+                        </div>
+                    </div>
+                    <button onclick="submitOrder()" class="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-extrabold py-3.5 rounded-xl shadow-lg transition text-sm">Submit Order</button>
+                </div>
+            </div>
+
+            <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-wallet mr-2"></i> Add Funds (UPI / QR)</h3>
+                    <p class="text-xs text-gray-400 mb-4">Scan QR code or pay via UPI ID directly, then submit your Transaction ID/UTR below.</p>
+                    <div class="bg-[#0A0F1D] p-4 rounded-xl border border-gray-700 text-center mb-4">
+                        <img id="displayQrImg" src="https://via.placeholder.com/150" alt="UPI QR Code" class="w-36 h-36 mx-auto mb-3 rounded-lg object-contain border border-yellow-500/30">
+                        <p class="text-xs text-gray-300 font-mono" id="displayUpiId">UPI: vinayak@upi</p>
+                    </div>
+                    <div class="space-y-3">
+                        <input type="number" id="addAmount" placeholder="Amount in INR" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
+                        <input type="text" id="txId" placeholder="Transaction ID / UTR Number" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
+                    </div>
+                </div>
+                <button onclick="submitFundsRequest()" class="mt-4 w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded-xl transition text-sm">Verify & Add Funds</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secret Founder / Admin Dashboard View -->
+    <div id="adminDashboard" class="hidden min-h-screen p-4 sm:p-10 max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b border-gray-800 pb-6 gap-4">
             <div>
                 <h1 class="text-3xl font-black text-yellow-500">V MEDIA - FOUNDER PANEL</h1>
                 <p class="text-sm text-gray-400">Secured Full Control, AI Configuration, Payments, & Community Management Dashboard</p>
             </div>
-            <button onclick="logoutAdmin()" class="bg-red-600 hover:bg-red-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg">Logout Secret Panel</button>
+            <button onclick="auth.signOut().then(()=>location.reload())" class="bg-red-600 hover:bg-red-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg">Logout Secret Panel</button>
         </div>
 
-        <!-- AI / Gemini API Key Configuration Module -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-gray-800/80 border border-yellow-500/40 p-6 rounded-2xl shadow-xl flex items-center justify-between">
+                <div>
+                    <p class="text-gray-400 text-xs font-bold uppercase">Total Users</p>
+                    <h3 id="statTotalUsers" class="text-3xl font-black text-yellow-500 mt-1">0</h3>
+                </div>
+                <div class="bg-yellow-500/10 p-4 rounded-xl text-yellow-500"><i class="fa-solid fa-users text-2xl"></i></div>
+            </div>
+            <div class="bg-gray-800/80 border border-yellow-500/40 p-6 rounded-2xl shadow-xl flex items-center justify-between">
+                <div>
+                    <p class="text-gray-400 text-xs font-bold uppercase">Total Payments Received</p>
+                    <h3 id="statTotalPayments" class="text-3xl font-black text-yellow-500 mt-1">₹0</h3>
+                </div>
+                <div class="bg-yellow-500/10 p-4 rounded-xl text-yellow-500"><i class="fa-solid fa-indian-rupee-sign text-2xl"></i></div>
+            </div>
+            <div class="bg-gray-800/80 border border-yellow-500/40 p-6 rounded-2xl shadow-xl flex items-center justify-between">
+                <div>
+                    <p class="text-gray-400 text-xs font-bold uppercase">Active AI Requests</p>
+                    <h3 id="statAiRequests" class="text-3xl font-black text-yellow-500 mt-1">0</h3>
+                </div>
+                <div class="bg-yellow-500/10 p-4 rounded-xl text-yellow-500"><i class="fa-solid fa-wand-magic-sparkles text-2xl"></i></div>
+            </div>
+        </div>
+
+        <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-list-check mr-2"></i> Order Management System</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-gray-300">
+                    <thead class="bg-gray-900 text-yellow-500 uppercase">
+                        <tr>
+                            <th class="p-3">User Email</th>
+                            <th class="p-3">Service ID</th>
+                            <th class="p-3">Link</th>
+                            <th class="p-3">Qty</th>
+                            <th class="p-3">Charge</th>
+                            <th class="p-3">Status</th>
+                            <th class="p-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminOrdersTable">
+                        <tr><td colspan="7" class="p-4 text-center text-gray-500">Loading orders...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <div class="bg-gray-800/80 border border-yellow-500/40 p-6 rounded-2xl shadow-xl mb-8">
             <h3 class="text-xl font-bold mb-2 text-yellow-500"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i> AI / Gemini API Key Settings</h3>
-            <p class="text-gray-400 text-sm mb-4">Update your Gemini API key securely here so the platform AI features run smoothly without interruptions.</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-gray-400 text-xs mb-1">Gemini API Key</label>
@@ -83,7 +194,6 @@
             <button onclick="saveAiSettings()" class="mt-4 bg-yellow-500 text-black font-bold px-6 py-2.5 rounded-xl hover:opacity-90 transition text-sm">Save AI Configuration</button>
         </div>
 
-        <!-- Payment & QR Management Module -->
         <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl mb-8">
             <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-wallet mr-2"></i> Payment Gateways & QR Configuration</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -103,7 +213,6 @@
             <button onclick="savePaymentSettings()" class="mt-4 bg-yellow-500 text-black font-bold px-6 py-2.5 rounded-xl hover:opacity-90 transition text-sm">Save Payment Settings</button>
         </div>
 
-        <!-- Global Notification & Giveaway Control -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl">
                 <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-bullhorn mr-2"></i> Global Notification System</h3>
@@ -117,8 +226,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Floating Chat & Support Widgets -->
+        <!-- Floating Chat & Support Widgets -->
     <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
         <div id="chatBox" class="hidden mb-3 w-80 sm:w-96 h-[450px] bg-gray-900 border border-yellow-500 rounded-2xl p-4 shadow-2xl flex flex-col">
             <div class="flex justify-between items-center border-b border-gray-800 pb-2 mb-2">
@@ -131,15 +239,12 @@
                 </div>
                 <button onclick="document.getElementById('chatBox').classList.add('hidden')" class="text-gray-400 hover:text-white text-lg">&times;</button>
             </div>
-            
             <div id="chatMessages" class="flex-1 overflow-y-auto mb-3 text-xs text-gray-300 space-y-2 p-2 bg-[#0A0F1D]/50 rounded-xl"></div>
-            
             <div class="flex gap-2">
                 <input type="text" id="chatInput" placeholder="Type a message or giveaway reply..." class="flex-1 p-2.5 bg-[#0A0F1D] border border-gray-700 rounded-xl text-xs outline-none text-white">
                 <button onclick="sendChatMessage()" class="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl text-xs hover:opacity-90 transition">Send</button>
             </div>
         </div>
-
         <div class="flex gap-3">
             <button onclick="document.getElementById('chatBox').classList.toggle('hidden')" class="bg-yellow-500 hover:bg-yellow-600 text-black w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-105">
                 <i class="fa-solid fa-comments text-2xl"></i>
@@ -148,7 +253,6 @@
                 <i class="fab fa-whatsapp text-3xl"></i>
             </button>
         </div>
-        
         <div id="waMenu" class="hidden mt-3 bg-gray-900 border border-yellow-500 rounded-2xl p-4 shadow-2xl w-64">
             <p class="text-xs text-gray-400 mb-2 font-bold uppercase tracking-wider">24x7 WhatsApp Support:</p>
             <a href="https://wa.me/919702688696" target="_blank" class="block text-white hover:text-yellow-500 text-sm mb-2"><i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 97026 88696</a>
@@ -173,7 +277,6 @@
             <input type="email" id="signupEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
             <input type="password" id="signupPass" placeholder="Password" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
             <button onclick="handleSignup()" class="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-extrabold py-3.5 rounded-xl shadow-lg transition text-sm mb-4">Register & Generate ID</button>
-            
             <div class="relative flex py-2 items-center">
                 <div class="flex-grow border-t border-gray-700"></div>
                 <span class="flex-shrink mx-4 text-gray-500 text-xs">OR</span>
@@ -196,7 +299,6 @@
             <input type="email" id="loginEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
             <input type="password" id="loginPass" placeholder="Password" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
             <button onclick="handleLogin()" class="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-bold py-3.5 rounded-xl transition text-sm mb-4">Login</button>
-            
             <div class="relative flex py-2 items-center">
                 <div class="flex-grow border-t border-gray-700"></div>
                 <span class="flex-shrink mx-4 text-gray-500 text-xs">OR</span>
@@ -207,184 +309,346 @@
             </button>
         </div>
     </div>
-     <!-- Firebase SDK (Compat) -->
+
+    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
 
-    <!-- Comprehensive Master Script -->
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyBuGtoiOMTeue8LiBhX3RFleEHQNkMgf1o",
-            authDomain: "v-media-b23aa.firebaseapp.com",
-            databaseURL: "https://v-media-b23aa-default-rtdb.firebaseio.com",
-            projectId: "v-media-b23aa",
-            storageBucket: "v-media-b23aa.firebasestorage.app",
-            messagingSenderId: "334280064838",
-            appId: "1:334280064838:web:a8b4a4d474e16ed338ef47",
-            measurementId: "G-3VK7FME1CC"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        const analytics = firebase.analytics();
-
-        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-
-        function handleSignup() {
-            const email = document.getElementById('signupEmail').value;
-            const pass = document.getElementById('signupPass').value;
-            auth.createUserWithEmailAndPassword(email, pass)
-                .then(() => { alert("Account Created Successfully!"); closeModal('signupModal'); })
-                .catch(err => alert(err.message));
-        }
-
-        function handleLogin() {
-            const email = document.getElementById('loginEmail').value;
-            const pass = document.getElementById('loginPass').value;
-            auth.signInWithEmailAndPassword(email, pass)
-                .then(() => { closeModal('loginModal'); })
-                .catch(err => alert(err.message));
-        }
-
-        function handleGoogleLogin() {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider)
-                .then((result) => {
-                    alert("Successfully Logged In as " + result.user.email);
-                    closeModal('loginModal');
-                    closeModal('signupModal');
-                })
-                .catch((error) => {
-                    alert("Google Login Error: " + error.message);
-                });
-        }
-
-        function logoutAdmin() {
-            auth.signOut().then(() => { location.reload(); });
-        }
-
-        function saveAiSettings() {
-            const apiKey = document.getElementById('adminApiKeyInput').value;
-            const modelName = document.getElementById('adminAiModelInput').value;
-
-            db.collection("settings").doc("ai_config").set({
-                geminiApiKey: apiKey,
-                model: modelName,
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-            })
-            .then(() => alert("AI / Gemini API Settings Saved Successfully!"))
-            .catch(err => alert("Error saving AI settings: " + err.message));
-        }
-
-        function savePaymentSettings() {
-            const upi = document.getElementById('upiId').value;
-            const bank = document.getElementById('bankInfo').value;
-            const qr = document.getElementById('qrImageUrl').value;
-
-            db.collection("settings").doc("payment_config").set({
-                upiId: upi,
-                bankDetails: bank,
-                qrCodeUrl: qr,
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-            })
-            .then(() => alert("Payment Gateways & QR Settings Updated Successfully!"))
-            .catch(err => alert("Error: " + err.message));
-        }
-
-        function sendGlobalNotification() {
-            const msg = document.getElementById('adminNotifInput').value;
-            if(!msg) return;
-            db.collection("system").doc("notification").set({
-                message: msg,
-                active: true,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            })
-            .then(() => alert("Global Notification Broadcasted!"));
-        }
-
-        function runGiveaway() {
-            const msg = document.getElementById('adminGiveawayInput').value;
-            if(!msg) return;
-            db.collection("group_chat").add({
-                sender: "FOUNDER (GIVEAWAY)",
-                text: "🎁 GIVEAWAY ALERT: " + msg,
-                isGiveaway: true,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            })
-            .then(() => alert("Giveaway broadcasted successfully to group chat!"));
-        }
-
-        let chatMode = "GROUP";
-
-        function switchChatMode(mode) {
-            chatMode = mode;
-            if(mode === "GROUP") {
-                document.getElementById('btnGroupMode').className = "text-yellow-500 font-bold underline";
-                document.getElementById('btnPersonalMode').className = "text-gray-400 hover:text-white";
-            } else {
-                document.getElementById('btnPersonalMode').className = "text-yellow-500 font-bold underline";
-                document.getElementById('btnGroupMode').className = "text-gray-400 hover:text-white";
-            }
-            loadMessages();
-        }
-
-        function sendChatMessage() {
-            const text = document.getElementById('chatInput').value;
-            const user = auth.currentUser;
-            if(!text) return;
-
-            const collectionName = chatMode === "GROUP" ? "group_chat" : "private_chats";
-            const senderName = user ? user.email : "Guest User";
-
-            db.collection(collectionName).add({
-                sender: senderName,
-                text: text,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            document.getElementById('chatInput').value = '';
-        }
-
-        function loadMessages() {
-            const collectionName = chatMode === "GROUP" ? "group_chat" : "private_chats";
-            db.collection(collectionName).orderBy("timestamp", "asc").onSnapshot(snapshot => {
-                const chatDiv = document.getElementById('chatMessages');
-                chatDiv.innerHTML = "";
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const highlightClass = data.isGiveaway ? "bg-yellow-600/30 border border-yellow-500 p-2 rounded-lg my-1" : "bg-[#0A0F1D] p-2 rounded-lg";
-                    chatDiv.innerHTML += `<div class="${highlightClass}"><b class="text-yellow-500">${data.sender}:</b> ${data.text}</div>`;
-                });
-                chatDiv.scrollTop = chatDiv.scrollHeight;
-            });
-        }
-        
-        loadMessages();
-
-        auth.onAuthStateChanged(user => {
-            if (user && user.email === "vinayakglobaldream@gmail.com") {
-                document.getElementById('adminDashboard').classList.remove('hidden');
-                
-                db.collection("settings").doc("payment_config").get().then(doc => {
-                    if(doc.exists) {
-                        document.getElementById('upiId').value = doc.data().upiId || "";
-                        document.getElementById('bankInfo').value = doc.data().bankDetails || "";
-                        document.getElementById('qrImageUrl').value = doc.data().qrCodeUrl || "";
-                    }
-                });
-
-                db.collection("settings").doc("ai_config").get().then(doc => {
-                    if(doc.exists) {
-                        document.getElementById('adminApiKeyInput').value = doc.data().geminiApiKey || "";
-                        document.getElementById('adminAiModelInput').value = doc.data().model || "gemini-2.5-flash";
-                    }
-                });
-            } else {
-                document.getElementById('adminDashboard').classList.add('hidden');
-            }
-        });
-    </script>
+    <!-- Scripts Links -->
+    <script src="client.js"></script>
+    <script src="admin-chat.js"></script>
 </body>
 </html>
+/* style.css */
+.v-logo-wrapper { 
+    perspective: 1000px; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    text-decoration: none; 
+}
+.v-logo-box { 
+    width: 42px; 
+    height: 42px; 
+    background: linear-gradient(135deg, #0A0F1D 0%, #1a2942 100%); 
+    border: 2px solid #D4AF37; 
+    border-radius: 12px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    position: relative; 
+    transition: transform 0.5s ease; 
+}
+.v-logo-text { 
+    font-family: 'Arial Black', sans-serif; 
+    font-weight: 900; 
+    font-size: 26px; 
+    background: linear-gradient(0deg, #D4AF37 0%, #F3E5AB 50%, #FFFFFF 100%); 
+    -webkit-background-clip: text; 
+    color: transparent; 
+}
+.brand-title { 
+    font-weight: 900; 
+    letter-spacing: 1px; 
+    background: linear-gradient(to right, #FFFFFF, #D4AF37); 
+    -webkit-background-clip: text; 
+    color: transparent; 
+    margin-left: 10px; 
+}
+// client.js
+const firebaseConfig = {
+    apiKey: "AIzaSyBuGtoiOMTeue8LiBhX3RFleEHQNkMgf1o",
+    authDomain: "v-media-b23aa.firebaseapp.com",
+    databaseURL: "https://v-media-b23aa-default-rtdb.firebaseio.com",
+    projectId: "v-media-b23aa",
+    storageBucket: "v-media-b23aa.firebasestorage.app",
+    messagingSenderId: "334280064838",
+    appId: "1:334280064838:web:a8b4a4d474e16ed338ef47",
+    measurementId: "G-3VK7FME1CC"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const analytics = firebase.analytics();
+
+const ADMIN_EMAIL = "vinayakglobaldream@gmail.com";
+
+function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+function handleSignup() {
+    const email = document.getElementById('signupEmail').value;
+    const pass = document.getElementById('signupPass').value;
+    auth.createUserWithEmailAndPassword(email, pass)
+        .then(() => { alert("Account Created Successfully!"); closeModal('signupModal'); })
+        .catch(err => alert(err.message));
+}
+
+function handleLogin() {
+    const email = document.getElementById('loginEmail').value;
+    const pass = document.getElementById('loginPass').value;
+    auth.signInWithEmailAndPassword(email, pass)
+        .then(() => { closeModal('loginModal'); })
+        .catch(err => alert(err.message));
+}
+
+function handleGoogleLogin() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+        .then((result) => {
+            alert("Successfully Logged In as " + result.user.email);
+            closeModal('loginModal');
+            closeModal('signupModal');
+        })
+        .catch((error) => {
+            alert("Google Login Error: " + error.message);
+        });
+}
+
+const serviceRates = { "101": 0.15, "102": 0.05, "201": 0.30 };
+
+function calculateTotal() {
+    const serviceId = document.getElementById('orderService').value;
+    const qty = document.getElementById('orderQuantity').value;
+    const rate = serviceRates[serviceId] || 0.10;
+    const total = qty * rate;
+    document.getElementById('orderTotalCharge').value = "₹" + total.toFixed(2);
+}
+
+function submitOrder() {
+    const user = auth.currentUser;
+    if(!user) { alert("Please login first to place an order."); return; }
+    const link = document.getElementById('orderLink').value;
+    const qty = document.getElementById('orderQuantity').value;
+    const total = document.getElementById('orderTotalCharge').value;
+
+    if(!link || !qty) { alert("Please fill all order details."); return; }
+
+    db.collection("orders").add({
+        userEmail: user.email,
+        service: document.getElementById('orderService').value,
+        link: link,
+        quantity: qty,
+        charge: total,
+        status: "Pending",
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+        alert("Order Placed Successfully!");
+        document.getElementById('orderLink').value = "";
+        document.getElementById('orderQuantity').value = "";
+        document.getElementById('orderTotalCharge').value = "";
+    }).catch(err => alert("Error: " + err.message));
+}
+
+function submitFundsRequest() {
+    const user = auth.currentUser;
+    if(!user) { alert("Please login first."); return; }
+    const amount = document.getElementById('addAmount').value;
+    const txId = document.getElementById('txId').value;
+
+    if(!amount || !txId) { alert("Please fill amount and transaction ID."); return; }
+
+    db.collection("fund_requests").add({
+        userEmail: user.email,
+        amount: parseFloat(amount),
+        transactionId: txId,
+        status: "Pending Verification",
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+        alert("Fund request submitted successfully!");
+        document.getElementById('addAmount').value = "";
+        document.getElementById('txId').value = "";
+    }).catch(err => alert("Error: " + err.message));
+}
+// admin-chat.js
+function loadAdminDashboardData() {
+    db.collection("orders").onSnapshot(snapshot => {
+        const uniqueUsers = new Set();
+        let aiReqCount = snapshot.size;
+        snapshot.forEach(doc => {
+            if(doc.data().userEmail) uniqueUsers.add(doc.data().userEmail);
+        });
+        document.getElementById('statTotalUsers').innerText = uniqueUsers.size || 1;
+        document.getElementById('statAiRequests').innerText = aiReqCount;
+    });
+
+    db.collection("fund_requests").onSnapshot(snapshot => {
+        let totalPayments = 0;
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            if(data.amount) totalPayments += Number(data.amount);
+        });
+        document.getElementById('statTotalPayments').innerText = "₹" + totalPayments;
+    });
+
+    db.collection("orders").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+        const tbody = document.getElementById('adminOrdersTable');
+        tbody.innerHTML = "";
+        if(snapshot.empty) {
+            tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-gray-500">No orders found.</td></tr>`;
+            return;
+        }
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            const orderId = doc.id;
+            const statusColor = data.status === "Completed" ? "text-green-400 font-bold" : "text-yellow-400 font-bold";
+            tbody.innerHTML += `
+                <tr class="border-b border-gray-800 hover:bg-gray-900/40">
+                    <td class="p-3">${data.userEmail || 'N/A'}</td>
+                    <td class="p-3">${data.service || 'N/A'}</td>
+                    <td class="p-3 truncate max-w-[120px]"><a href="${data.link}" target="_blank" class="text-yellow-500 underline">${data.link}</a></td>
+                    <td class="p-3">${data.quantity || '0'}</td>
+                    <td class="p-3">${data.charge || '₹0'}</td>
+                    <td class="p-3 ${statusColor}">${data.status || 'Pending'}</td>
+                    <td class="p-3">
+                        ${data.status !== 'Completed' ? 
+                            `<button onclick="updateOrderStatus('${orderId}', 'Completed')" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-[10px] font-bold">Mark Completed</button>` : 
+                            `<span class="text-gray-500">Done</span>`}
+                    </td>
+                </tr>
+            `;
+        });
+    });
+}
+
+function updateOrderStatus(orderId, newStatus) {
+    db.collection("orders").doc(orderId).update({ status: newStatus }).catch(err => alert(err.message));
+}
+
+function saveAiSettings() {
+    const apiKey = document.getElementById('adminApiKeyInput').value;
+    const modelName = document.getElementById('adminAiModelInput').value;
+    db.collection("settings").doc("ai_config").set({
+        geminiApiKey: apiKey,
+        model: modelName,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => alert("AI / Gemini API Settings Saved Successfully!"));
+}
+
+function savePaymentSettings() {
+    const upi = document.getElementById('upiId').value;
+    const bank = document.getElementById('bankInfo').value;
+    const qr = document.getElementById('qrImageUrl').value;
+    db.collection("settings").doc("payment_config").set({
+        upiId: upi,
+        bankDetails: bank,
+        qrCodeUrl: qr,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => alert("Payment Settings Updated Successfully!"));
+}
+
+function sendGlobalNotification() {
+    const msg = document.getElementById('adminNotifInput').value;
+    if(!msg) return;
+    db.collection("system").doc("notification").set({
+        message: msg,
+        active: true,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => alert("Global Notification Broadcasted!"));
+}
+
+function runGiveaway() {
+    const msg = document.getElementById('adminGiveawayInput').value;
+    if(!msg) return;
+    db.collection("group_chat").add({
+        sender: "FOUNDER (GIVEAWAY)",
+        text: "🎁 GIVEAWAY ALERT: " + msg,
+        isGiveaway: true,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => alert("Giveaway broadcasted to group chat!"));
+}
+
+let chatMode = "GROUP";
+
+function switchChatMode(mode) {
+    chatMode = mode;
+    if(mode === "GROUP") {
+        document.getElementById('btnGroupMode').className = "text-yellow-500 font-bold underline";
+        document.getElementById('btnPersonalMode').className = "text-gray-400 hover:text-white";
+    } else {
+        document.getElementById('btnPersonalMode').className = "text-yellow-500 font-bold underline";
+        document.getElementById('btnGroupMode').className = "text-gray-400 hover:text-white";
+    }
+    loadMessages();
+}
+
+function sendChatMessage() {
+    const text = document.getElementById('chatInput').value;
+    const user = auth.currentUser;
+    if(!text) return;
+    const collectionName = chatMode === "GROUP" ? "group_chat" : "private_chats";
+    const senderName = user ? user.email : "Guest User";
+
+    db.collection(collectionName).add({
+        sender: senderName,
+        text: text,
+        isAdmin: user && user.email === ADMIN_EMAIL,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    document.getElementById('chatInput').value = '';
+}
+
+function loadMessages() {
+    const collectionName = chatMode === "GROUP" ? "group_chat" : "private_chats";
+    db.collection(collectionName).orderBy("timestamp", "asc").onSnapshot(snapshot => {
+        const chatDiv = document.getElementById('chatMessages');
+        chatDiv.innerHTML = "";
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            let highlightClass = "bg-[#0A0F1D] p-2 rounded-lg";
+            if(data.isGiveaway) {
+                highlightClass = "bg-yellow-600/30 border border-yellow-500 p-2 rounded-lg my-1";
+            }
+            let senderBadge = `<b class="text-yellow-500">${data.sender}:</b>`;
+            if(data.isAdmin || data.sender === ADMIN_EMAIL || data.sender.includes("FOUNDER")) {
+                senderBadge = `<span class="bg-yellow-500 text-black font-extrabold text-[10px] px-1.5 py-0.5 rounded mr-1">ADMIN / FOUNDER</span><b class="text-yellow-400">${data.sender}:</b>`;
+            }
+            chatDiv.innerHTML += `<div class="${highlightClass}">${senderBadge} ${data.text}</div>`;
+        });
+        chatDiv.scrollTop = chatDiv.scrollHeight;
+    });
+}
+
+loadMessages();
+
+auth.onAuthStateChanged(user => {
+    if (user) {
+        if (user.email === ADMIN_EMAIL) {
+            document.getElementById('adminDashboard').classList.remove('hidden');
+            document.getElementById('userDashboard').classList.add('hidden');
+            loadAdminDashboardData();
+            
+            db.collection("settings").doc("payment_config").get().then(doc => {
+                if(doc.exists) {
+                    document.getElementById('upiId').value = doc.data().upiId || "";
+                    document.getElementById('bankInfo').value = doc.data().bankDetails || "";
+                    document.getElementById('qrImageUrl').value = doc.data().qrCodeUrl || "";
+                }
+            });
+
+            db.collection("settings").doc("ai_config").get().then(doc => {
+                if(doc.exists) {
+                    document.getElementById('adminApiKeyInput').value = doc.data().geminiApiKey || "";
+                    document.getElementById('adminAiModelInput').value = doc.data().model || "gemini-2.5-flash";
+                }
+            });
+        } else {
+            document.getElementById('adminDashboard').classList.add('hidden');
+            document.getElementById('userDashboard').classList.remove('hidden');
+            
+            db.collection("settings").doc("payment_config").get().then(doc => {
+                if(doc.exists) {
+                    const data = doc.data();
+                    if(data.upiId) document.getElementById('displayUpiId').innerText = "UPI: " + data.upiId;
+                    if(data.qrCodeUrl) document.getElementById('displayQrImg').src = data.qrCodeUrl;
+                }
+            });
+        }
+    } else {
+        document.getElementById('adminDashboard').classList.add('hidden');
+        document.getElementById('userDashboard').classList.add('hidden');
+    }
+});
