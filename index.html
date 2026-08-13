@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V Media - Premium SMM Panel</title>
+    <title>V Media - Ultimate Master SMM Panel & Founder Dashboard</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -22,85 +22,226 @@
     </script>
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase SDK (Compat) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <!-- Cinematic 3D Logo Styles & Multi-lingual Direction -->
+    <style>
+        .v-logo-wrapper { perspective: 1000px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; }
+        .v-logo-box { width: 42px; height: 42px; background: linear-gradient(135deg, #0A0F1D 0%, #1a2942 100%); border: 2px solid #D4AF37; border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; transform-style: preserve-3d; transition: transform 0.5s ease, box-shadow 0.5s ease; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2); }
+        .v-logo-wrapper:hover .v-logo-box { transform: rotateY(15deg) rotateX(10deg) scale(1.05); box-shadow: -5px 10px 20px rgba(0, 0, 0, 0.5), 0 8px 25px rgba(212, 175, 55, 0.4); border-color: #F3E5AB; }
+        .v-logo-text { font-family: 'Arial Black', Gadget, sans-serif; font-weight: 900; font-size: 26px; background: linear-gradient(0deg, #D4AF37 0%, #F3E5AB 50%, #FFFFFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; position: relative; z-index: 2; text-shadow: 0 2px 4px rgba(0,0,0,0.3); transform: translateZ(10px); }
+        .v-logo-box::after { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, #D4AF37, transparent, #F3E5AB); filter: blur(8px); opacity: 0.5; border-radius: 14px; z-index: 1; }
+        .brand-title { font-weight: 900; letter-spacing: 1px; background: linear-gradient(to right, #FFFFFF, #D4AF37); -webkit-background-clip: text; background-clip: text; color: transparent; margin-left: 10px; font-size: 20px; }
+        .rtl { direction: rtl; }
+        .ltr { direction: ltr; }
+    </style>
 </head>
-<body class="bg-navyDark text-white font-sans antialiased selection:bg-goldPrimary selection:text-black">
+<body class="bg-navyDark text-white font-sans antialiased selection:bg-goldPrimary selection:text-black transition-all duration-300">
 
     <!-- Header / Navbar -->
-    <header class="border-b border-gray-800 bg-navyDark/9ahl sticky top-0 z-50 backdrop-blur-md">
+    <header class="border-b border-gray-800 bg-navyDark/90 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-goldPrimary to-goldLight flex items-center justify-center shadow-lg shadow-goldPrimary/20">
-                    <span class="text-black font-extrabold text-xl">V</span>
+            <a href="#" class="v-logo-wrapper">
+                <div class="v-logo-box"><span class="v-logo-text">V</span></div>
+                <span class="brand-title">MEDIA</span>
+            </a>
+            
+            <nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-300 items-center">
+                <a href="#services" class="hover:text-goldPrimary transition" id="navServices">Services</a>
+                <a href="#features" class="hover:text-goldPrimary transition" id="navFeatures">Features</a>
+                <!-- Social Media Accounts Header Links -->
+                <div class="flex items-center space-x-3 border-l border-gray-700 pl-4">
+                    <a href="https://instagram.com" target="_blank" class="hover:text-goldPrimary transition"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me" target="_blank" class="hover:text-goldPrimary transition"><i class="fab fa-telegram"></i></a>
+                    <a href="https://facebook.com" target="_blank" class="hover:text-goldPrimary transition"><i class="fab fa-facebook"></i></a>
                 </div>
-                <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-white via-goldLight to-goldPrimary bg-clip-text text-transparent">V MEDIA</span>
-            </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
-                <a href="#services" class="hover:text-goldPrimary transition">Services</a>
-                <a href="#api" class="hover:text-goldPrimary transition">API</a>
-                <a href="#about" class="hover:text-goldPrimary transition">About Us</a>
             </nav>
-            <div class="flex items-center space-x-4">
-                <a href="#login" class="text-sm font-semibold text-gray-300 hover:text-white px-4 py-2 transition">Login</a>
-                <a href="#signup" class="bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-bold text-sm px-5 py-2.5 rounded-xl shadow-lg shadow-goldPrimary/20 hover:opacity-90 transition transform hover:-translate-y-0.5">Get Started</a>
+
+            <div class="flex items-center space-x-3">
+                <!-- 7-Language Switcher Dropdown -->
+                <select id="langSwitcher" onchange="changeLanguage()" class="bg-navyCard text-white text-xs font-semibold rounded-lg p-2 border border-goldPrimary/50 outline-none cursor-pointer">
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Gujarati">Gujarati</option>
+                    <option value="Marathi">Marathi</option>
+                    <option value="Urdu">Urdu</option>
+                    <option value="Arabic">Arabic</option>
+                    <option value="Hinglish">Hinglish</option>
+                </select>
+
+                <button onclick="openModal('loginModal')" class="text-sm font-semibold text-gray-300 hover:text-white px-3 py-2 transition" id="loginNavBtn">Login</button>
+                <button onclick="openModal('signupModal')" class="bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-bold text-sm px-4 py-2 rounded-xl shadow-lg shadow-goldPrimary/20 hover:opacity-90 transition" id="getStartedNavBtn">Get Started</button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden py-24 lg:py-32">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-600/10 via-transparent to-transparent pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <span class="inline-flex items-center space-x-2 bg-goldPrimary/10 border border-goldPrimary/30 rounded-full px-4 py-1.5 text-xs font-semibold text-goldLight mb-6">
-                <i class="fa-solid fa-bolt text-goldPrimary"></i>
-                <span>Fastest & Most Reliable SMM Services</span>
-            </span>
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-8">
-                Boost Your Social Presence <br/>
-                <span class="bg-gradient-to-r from-goldPrimary via-yellow-200 to-goldPrimary bg-clip-text text-transparent">With V Media</span>
-            </h1>
-            <p class="max-w-2xl mx-auto text-base sm:text-lg text-gray-400 mb-10">
-                The ultimate platform for creators, influencers, and agencies to scale social media growth instantly with automated, high-quality services.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-5">
-                <a href="#signup" class="w-full sm:w-auto bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-extrabold px-8 py-4 rounded-xl shadow-xl shadow-goldPrimary/20 hover:scale-105 transition">Create Free Account</a>
-                <a href="#services" class="w-full sm:w-auto bg-navyCard border border-gray-800 text-gray-300 font-bold px-8 py-4 rounded-xl hover:bg-gray-800 hover:text-white transition">Explore Services</a>
+    <!-- Main Public Frontend View -->
+    <div id="publicView">
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden py-24 lg:py-32">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-600/10 via-transparent to-transparent pointer-events-none"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <span class="inline-flex items-center space-x-2 bg-goldPrimary/10 border border-goldPrimary/30 rounded-full px-4 py-1.5 text-xs font-semibold text-goldLight mb-6">
+                    <i class="fa-solid fa-bolt text-goldPrimary"></i>
+                    <span id="heroBadge">Fastest & Most Reliable SMM Services</span>
+                </span>
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-8" id="heroHeading">
+                    Boost Your Social Presence <br/>
+                    <span class="bg-gradient-to-r from-goldPrimary via-yellow-200 to-goldPrimary bg-clip-text text-transparent">With V Media</span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-base sm:text-lg text-gray-400 mb-10" id="heroDesc">
+                    The ultimate platform for creators, influencers, and agencies to scale social media growth instantly with automated, high-quality services.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-5">
+                    <button onclick="openModal('signupModal')" class="w-full sm:w-auto bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-extrabold px-8 py-4 rounded-xl shadow-xl shadow-goldPrimary/20 hover:scale-105 transition" id="heroBtnCreate">Create Free Account</button>
+                    <a href="#services" class="w-full sm:w-auto bg-navyCard border border-gray-800 text-gray-300 font-bold px-8 py-4 rounded-xl hover:bg-gray-800 hover:text-white transition text-center" id="heroBtnExplore">Explore Services</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Grid -->
-    <section class="py-20 bg-navyCard/50 border-y border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl bg-navyCard border border-gray-800/80 shadow-xl relative group hover:border-goldPrimary/50 transition">
-                    <div class="w-12 h-12 rounded-lg bg-goldPrimary/10 text-goldPrimary flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-bolt-lightning"></i>
+        <!-- Features Grid -->
+        <section id="features" class="py-20 bg-navyCard/50 border-y border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-8 rounded-2xl bg-navyCard border border-gray-800/80 shadow-xl relative group hover:border-goldPrimary/50 transition">
+                        <div class="w-12 h-12 rounded-lg bg-goldPrimary/10 text-goldPrimary flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-bolt-lightning"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white" id="feature1Title">Instant Delivery</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed" id="feature1Desc">Orders begin processing automatically within seconds through our advanced API system.</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Instant Delivery</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Orders begin processing automatically within seconds through our advanced API system.</p>
-                </div>
-                <div class="p-8 rounded-2xl bg-navyCard border border-gray-800/80 shadow-xl relative group hover:border-goldPrimary/50 transition">
-                    <div class="w-12 h-12 rounded-lg bg-goldPrimary/10 text-goldPrimary flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-shield-halved"></i>
+                    <div class="p-8 rounded-2xl bg-navyCard border border-gray-800/80 shadow-xl relative group hover:border-goldPrimary/50 transition">
+                        <div class="w-12 h-12 rounded-lg bg-goldPrimary/10 text-goldPrimary flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white" id="feature2Title">100% Secure & Stable</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed" id="feature2Desc">Safe payment integrations and protected user data architecture designed for top-tier agency work.</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">100% Secure & Stable</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Safe payment integrations and protected user data architecture designed for top-tier agency work.</p>
-                </div>
-                <div class="p-8 rounded-2xl bg-navyCard border border-gray-800/80 shadow-xl relative group hover:border-goldPrimary/50 transition">
-                    <div class="w-12 h-12 rounded-lg bg-goldPrimary/10 text-goldPrimary flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-headset"></i>
+                    <div class="p-8 rounded-2xl bg-navyCard border border-gray-800/80 shadow-xl relative group hover:border-goldPrimary/50 transition">
+                        <div class="w-12 h-12 rounded-lg bg-goldPrimary/10 text-goldPrimary flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white" id="feature3Title">24/7 Support</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed" id="feature3Desc">Dedicated support team ready to resolve your queries and assist with large bulk orders.</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">24/7 Support</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Dedicated support team ready to resolve your queries and assist with large bulk orders.</p>
                 </div>
             </div>
+        </section>
+    </div>
+
+    <!-- Secret Founder / Admin Dashboard View (Hidden until founder email logs in) -->
+    <div id="adminDashboard" class="hidden min-h-screen p-6 sm:p-10 max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b border-gray-800 pb-6 gap-4">
+            <div>
+                <h1 class="text-3xl font-black text-goldPrimary">V MEDIA - FOUNDER PANEL</h1>
+                <p class="text-sm text-gray-400">Secured Full Control & Management Dashboard (100% Access)</p>
+            </div>
+            <button onclick="logoutAdmin()" class="bg-red-600 hover:bg-red-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg">Logout Secret Panel</button>
         </div>
-    </section>
+
+        <!-- Admin Metrics Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
+                <p class="text-gray-400 text-sm">System Status</p>
+                <h3 class="text-2xl font-bold text-green-400 mt-1">Operational & Active</h3>
+            </div>
+            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
+                <p class="text-gray-400 text-sm">Founder Account</p>
+                <h3 class="text-base font-bold text-goldPrimary mt-1">vinayakglobaldream@gmail.com</h3>
+            </div>
+            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
+                <p class="text-gray-400 text-sm">Access Permissions</p>
+                <h3 class="text-2xl font-bold text-white mt-1">Full Control</h3>
+            </div>
+        </div>
+
+        <!-- Management Sections: User Management, Service History, Status, Activities -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
+                <h3 class="text-xl font-bold mb-2 text-goldPrimary"><i class="fa-solid fa-users-gear mr-2"></i> User Management</h3>
+                <p class="text-sm text-gray-400 mb-4">View total users, virtual IDs, and manage client profiles.</p>
+                <button onclick="alert('User Management module active.')" class="bg-gray-800 hover:bg-goldPrimary hover:text-black font-bold px-4 py-2 rounded-xl text-sm transition">Access Users</button>
+            </div>
+            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
+                <h3 class="text-xl font-bold mb-2 text-goldPrimary"><i class="fa-solid fa-list-check mr-2"></i> Service Management & History</h3>
+                <p class="text-sm text-gray-400 mb-4">Control active services, check past order histories, and audit records.</p>
+                <button onclick="alert('Service History & Management active.')" class="bg-gray-800 hover:bg-goldPrimary hover:text-black font-bold px-4 py-2 rounded-xl text-sm transition">Manage Services</button>
+            </div>
+            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
+                <h3 class="text-xl font-bold mb-2 text-goldPrimary"><i class="fa-solid fa-chart-line mr-2"></i> Current Status & Analytics</h3>
+                <p class="text-sm text-gray-400 mb-4">Monitor real-time system performance and current running orders.</p>
+                <button onclick="alert('Current Status module active.')" class="bg-gray-800 hover:bg-goldPrimary hover:text-black font-bold px-4 py-2 rounded-xl text-sm transition">View Status</button>
+            </div>
+            <div class="bg-navyCard border border-gray-800 p-6 rounded-2xl shadow-xl">
+                <h3 class="text-xl font-bold mb-2 text-goldPrimary"><i class="fa-solid fa-shield-dog mr-2"></i> Complete Activities Control</h3>
+                <p class="text-sm text-gray-400 mb-4">Track security alerts, database queries, and system logs.</p>
+                <button onclick="alert('Activity log panel active.')" class="bg-gray-800 hover:bg-goldPrimary hover:text-black font-bold px-4 py-2 rounded-xl text-sm transition">View Logs</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating 24/7 WhatsApp Support Widget -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <div id="waMenu" class="hidden mb-3 bg-navyCard border border-goldPrimary rounded-2xl p-4 shadow-2xl w-64">
+            <p class="text-xs text-gray-400 mb-2 font-bold uppercase tracking-wider">24x7 WhatsApp Support:</p>
+            <a href="https://wa.me/919702688696" target="_blank" class="block text-white hover:text-goldPrimary text-sm mb-2"><i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 97026 88696</a>
+            <a href="https://wa.me/918808722351" target="_blank" class="block text-white hover:text-goldPrimary text-sm"><i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 88087 22351</a>
+        </div>
+        <button onclick="document.getElementById('waMenu').classList.toggle('hidden')" class="bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-105">
+            <i class="fab fa-whatsapp text-3xl"></i>
+        </button>
+    </div>
 
     <!-- Footer -->
     <footer class="py-12 border-t border-gray-800 text-center text-gray-500 text-sm">
         <p>&copy; 2026 V Media. All rights reserved. Built for professional social scaling.</p>
+        <p class="mt-2">Official Mail: <a href="mailto:vinayakglobaldream@gmail.com" class="text-goldPrimary hover:underline">vinayakglobaldream@gmail.com</a></p>
     </footer>
 
-</body>
-</html>
+    <!-- Signup Modal -->
+    <div id="signupModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+        <div class="bg-navyCard p-8 rounded-2xl w-full max-w-md border border-goldPrimary/40 relative shadow-2xl">
+            <button onclick="closeModal('signupModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="text-center mb-6">
+                <div class="v-logo-wrapper scale-90 mb-2"><div class="v-logo-box"><span class="v-logo-text">V</span></div></div>
+                <h2 class="text-white text-2xl font-bold" id="modalSignupTitle">Create Account</h2>
+                <p class="text-gray-400 text-sm" id="modalSignupSub">Get your Unique Virtual ID instantly.</p>
+            </div>
+            <input type="email" id="signupEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-navyDark border border-gray-700 text-white focus:border-goldPrimary outline-none text-sm">
+            <input type="password" id="signupPass" placeholder="Password" class="w-full p-3.5 mb-6 rounded-xl bg-navyDark border border-gray-700 text-white focus:border-goldPrimary outline-none text-sm">
+            <button onclick="handleSignup()" class="w-full bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-extrabold py-3.5 rounded-xl shadow-lg shadow-goldPrimary/20 hover:opacity-90 transition text-sm" id="modalSignupBtn">Register & Generate ID</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+        <div class="bg-navyCard p-8 rounded-2xl w-full max-w-md border border-gray-700 relative shadow-2xl">
+            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="text-center mb-6">
+                <div class="v-logo-wrapper scale-90 mb-2"><div class="v-logo-box"><span class="v-logo-text">V</span></div></div>
+                <h2 class="text-white text-2xl font-bold" id="modalLoginTitle">Panel Login</h2>
+                <p class="text-gray-400 text-sm" id="modalLoginSub">Founder login automatically unlocks secret admin panel.</p>
+            </div>
+            <input type="email" id="loginEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-navyDark border border-gray-700 text-white focus:border-goldPrimary outline-none text-sm">
+            <input type="password" id="loginPass" placeholder="Password" class="w-full p-3.5 mb-6 rounded-xl bg-navyDark border border-gray-700 text-white focus:border-goldPrimary outline-none text-sm">
+            <button onclick="handleLogin()" class="w-full bg-gradient-to-r from-goldPrimary to-yellow-600 text-black font-bold py-3.5 rounded-xl hover:opacity-90 transition text-sm" id="modalLoginBtn">Login</button>
+        </div>
+    </div>
+
+    <!-- Master Script & Multi-lingual Translation Support -->
+    <script>
+        // 7 Languages Dictionary
+        const translations = {
+            "English": {
+                navServices: "Services", navFeatures: "Features", loginNavBtn: "Login", getStartedNavBtn: "Get Started",
+                heroBadge: "Fastest & Most Reliable SMM Services",
+                heroHeadingLine1: "Boost Your Social Presence", heroHeadingLine2: "With V Media",
+                heroDesc: "The ultimate platform for creators, influencers, and agencies to scale social media growth instantly with automated, high-quality services.",
+                heroBtnCreate: "Create Free Account", heroBtnExplore: "Explore Services",
+                feature1Title: "Instant Delivery", feature1Desc: "Orders begin processing automatically within seconds through our advanced API system.",
+                feature2Title: "100% Secure & Stable", feature2Desc: "Safe payment integrations and protected user data architecture designed for top-tier agency work.",
+                feature3Title: "24/7 Support", feature3Desc: "Dedicated support tea
