@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V Media Master Ecosystem - Final Version</title>
-    <!-- Tailwind CSS CDN -->
+    <title>V Media Master Ecosystem - Professional SMM Panel & Founder Suite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -21,7 +20,7 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
-        <!-- HEADER / NAVIGATION -->
+        <!-- Header Section -->
     <header class="bg-[#1C2541] border-b border-yellow-500/40 p-4 flex justify-between items-center shadow-lg sticky top-0 z-50">
         <div class="flex items-center space-x-3">
             <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-500 to-amber-700 flex items-center justify-center font-bold text-black text-xl shadow">V</div>
@@ -31,20 +30,19 @@
             </div>
         </div>
         
-        <!-- Three-Dots Control Center Button -->
         <div class="relative">
             <button onclick="toggleThreeDotsMenu()" class="p-2 text-yellow-400 hover:text-white focus:outline-none">
                 <i class="fas fa-ellipsis-v text-xl"></i>
             </button>
             <div id="threeDotsDropdown" class="hidden absolute right-0 mt-2 w-48 bg-[#1C2541] border border-yellow-500/50 rounded-lg shadow-2xl py-2 z-50">
                 <a href="#" onclick="alert('Opening Global Help Desk...'); closeThreeDotsMenu();" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-800"><i class="fas fa-headset mr-2 text-yellow-400"></i> Support Hub</a>
-                <a href="#" onclick="alert('V Media v3.4.1 Enterprise Live'); closeThreeDotsMenu();" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-800"><i class="fas fa-info-circle mr-2 text-blue-400"></i> System Info</a>
+                <a href="#" onclick="alert('V Media v4.0 Professional Enterprise Live'); closeThreeDotsMenu();" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-800"><i class="fas fa-info-circle mr-2 text-blue-400"></i> System Info</a>
                 <div class="border-t border-gray-700 my-1"></div>
                 <a href="#" onclick="handleLogout();" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-800"><i class="fas fa-sign-out-alt mr-2"></i> Logout Session</a>
             </div>
         </div>
     </header>
-        <!-- AUTHENTICATION CONTAINER -->
+        <!-- Authentication View -->
     <main id="authContainer" class="flex-grow flex items-center justify-center p-4">
         <div class="bg-[#1C2541] border border-yellow-500/30 p-8 rounded-2xl shadow-2xl w-full max-w-md">
             <h2 id="authTitle" class="text-2xl font-black text-center text-yellow-400 mb-6 tracking-wide">V MEDIA ECOSYSTEM</h2>
@@ -52,7 +50,7 @@
             <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs text-gray-400 uppercase font-bold mb-1">Username / Email</label>
-                    <input type="text" id="loginUser" required placeholder="Enter username or email" class="w-full bg-[#0B132B] border border-gray-700 rounded-lg p-3 text-white focus:border-yellow-500 outline-none">
+                    <input type="text" id="loginUser" required placeholder="vinayakglobaldream@gmail.com" class="w-full bg-[#0B132B] border border-gray-700 rounded-lg p-3 text-white focus:border-yellow-500 outline-none">
                 </div>
                 <div>
                     <label class="block text-xs text-gray-400 uppercase font-bold mb-1">Password</label>
@@ -90,48 +88,80 @@
             </form>
         </div>
     </main>
-        <main id="dashboardContainer" class="hidden flex-grow container mx-auto p-4 max-w-4xl space-y-6">
+        <!-- Dashboard Container -->
+    <main id="dashboardContainer" class="hidden flex-grow container mx-auto p-4 max-w-5xl space-y-6">
         
-        <!-- FOUNDER MASTER PANEL -->
-        <div id="founderPanelSection" class="hidden bg-gradient-to-r from-amber-900/40 to-[#1C2541] border border-yellow-500 p-6 rounded-2xl shadow-xl">
-            <h2 class="text-xl font-extrabold text-yellow-400 flex items-center gap-2"><i class="fas fa-crown"></i> FOUNDER MASTER CONTROL PANEL</h2>
-            <p class="text-xs text-gray-300 mt-1">Full operational hierarchy & override command center for Vinayak Global Dream.</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <div class="bg-[#0B132B] p-4 rounded-xl border border-yellow-500/20">
-                    <h3 class="text-xs font-bold text-yellow-400 uppercase mb-2">Global Broadcast Center</h3>
-                    <textarea id="broadcastMsg" placeholder="Type platform-wide broadcast alert..." class="w-full bg-gray-900 border border-gray-700 p-2 rounded text-xs text-white mb-2"></textarea>
-                    <button onclick="sendBroadcastNotification()" class="bg-yellow-500 text-black text-xs font-bold px-4 py-2 rounded">Send Broadcast</button>
+        <!-- Founder Master Control Panel -->
+        <div id="founderPanelSection" class="hidden bg-gradient-to-r from-amber-950/60 to-[#1C2541] border border-yellow-500 p-6 rounded-2xl shadow-2xl space-y-6">
+            <div class="flex justify-between items-center border-b border-yellow-500/30 pb-3">
+                <h2 class="text-xl font-extrabold text-yellow-400 flex items-center gap-2"><i class="fas fa-crown"></i> FOUNDER MASTER CONTROL PANEL</h2>
+                <span class="text-xs bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full border border-yellow-500 font-bold">API Sync & Panel Suite</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-[#0B132B] p-5 rounded-xl border border-yellow-500/30 space-y-3">
+                    <h3 class="text-xs font-bold text-yellow-400 uppercase flex items-center gap-1"><i class="fas fa-plug"></i> Connect External SMM Provider API</h3>
+                    <input type="text" id="apiProviderName" placeholder="Provider Name (e.g. MasterSMM)" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white">
+                    <input type="text" id="apiUrlInput" placeholder="Provider API URL" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white">
+                    <input type="password" id="apiKeyInput" placeholder="Provider API Key" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white">
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="text" id="apiServiceId" placeholder="Service ID" class="bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white">
+                        <input type="number" id="apiSellingRate" placeholder="Selling Rate / 1K (₹)" class="bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white">
+                    </div>
+                    <button onclick="connectExternalSmmApi()" class="w-full bg-yellow-500 hover:bg-yellow-400 text-black text-xs font-extrabold py-2.5 rounded transition">Sync & Import Service</button>
                 </div>
-                <div class="bg-[#0B132B] p-4 rounded-xl border border-yellow-500/20">
-                    <h3 class="text-xs font-bold text-yellow-400 uppercase mb-2">Sub-Admin Creator</h3>
-                    <input type="text" id="newAdminName" placeholder="Admin Name" class="w-full bg-gray-900 border border-gray-700 p-2 rounded text-xs text-white mb-2">
-                    <input type="email" id="newAdminEmail" placeholder="Admin Email" class="w-full bg-gray-900 border border-gray-700 p-2 rounded text-xs text-white mb-2">
-                    <button onclick="createNewAdminPanel()" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded">Provision Portal</button>
+
+                <div class="bg-[#0B132B] p-5 rounded-xl border border-yellow-500/30 space-y-3">
+                    <h3 class="text-xs font-bold text-yellow-400 uppercase flex items-center gap-1"><i class="fas fa-th-large"></i> Mine Dashboard Item Manager</h3>
+                    <input type="text" id="newFuncName" placeholder="Item Name (e.g. Reseller API)" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white">
+                    <input type="text" id="newFuncIcon" placeholder="Icon Class (e.g. fas fa-key text-yellow-400)" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white">
+                    <button onclick="addNewMineItem()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-extrabold py-2.5 rounded transition mt-2">Add to Mine Section</button>
                 </div>
+            </div>
+
+            <div class="bg-[#0B132B] p-5 rounded-xl border border-yellow-500/30 space-y-3">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xs font-bold text-yellow-400 uppercase"><i class="fas fa-list-alt mr-1"></i> Imported SMM Services List</h3>
+                    <span class="text-[10px] text-gray-400">Total: <span id="totalServicesCount" class="text-yellow-400 font-bold">3</span></span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-gray-900 text-gray-400 border-b border-gray-800">
+                                <th class="p-2.5">ID</th>
+                                <th class="p-2.5">Service Name</th>
+                                <th class="p-2.5">Provider</th>
+                                <th class="p-2.5">Rate / 1000</th>
+                                <th class="p-2.5 text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="founderServicesTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="bg-[#0B132B] p-5 rounded-xl border border-yellow-500/30 space-y-3">
+                <h3 class="text-xs font-bold text-yellow-400 uppercase"><i class="fas fa-sliders-h mr-1"></i> Mine Section Items Control</h3>
+                <div id="founderMineManagerList" class="space-y-2 max-h-40 overflow-y-auto pr-2"></div>
             </div>
         </div>
 
-        <!-- ADMIN CONTROL CENTER PANEL -->
-        <div id="adminPanelSection" class="hidden bg-gradient-to-r from-blue-950/40 to-[#1C2541] border border-blue-500 p-6 rounded-2xl shadow-xl">
+        <!-- Admin Control Center -->
+        <div id="adminPanelSection" class="hidden bg-gradient-to-r from-blue-950/60 to-[#1C2541] border border-blue-500 p-6 rounded-2xl shadow-xl">
             <h2 class="text-xl font-extrabold text-blue-400 flex items-center gap-2"><i class="fas fa-shield-alt"></i> ADMIN CONTROL CENTER</h2>
-            <p class="text-xs text-gray-300 mt-1">Manage network transactions, verifications, and regional platforms.</p>
+            <p class="text-xs text-gray-300 mt-1">Manage user order queues, balances, and automated webhooks.</p>
             <div class="grid grid-cols-2 gap-4 mt-4">
-                <button onclick="alert('Opening Pending Orders Review Queue...')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold p-3 rounded-lg text-xs">Review Pending Orders</button>
-                <button onclick="alert('Opening Global User Verification Console...')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold p-3 rounded-lg text-xs">User Database Control</button>
+                <button onclick="alert('Opening SMM Pending Orders Queue...')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold p-3 rounded-lg text-xs">Review SMM Orders</button>
+                <button onclick="alert('Opening Global User Database...')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold p-3 rounded-lg text-xs">User Database Control</button>
             </div>
         </div>
-
-        <!-- SMM & LIVE STREAMING PRICING PANEL -->
+                <!-- SMM Panel & Streaming Engine -->
         <div class="bg-[#1C2541] border border-yellow-500/20 p-6 rounded-2xl shadow-xl">
-            <h2 class="text-lg font-bold text-yellow-400 mb-4 flex items-center gap-2"><i class="fas fa-bolt"></i> SMM & VIFTING SERVICE ENGINE</h2>
+            <h2 class="text-lg font-bold text-yellow-400 mb-4 flex items-center gap-2"><i class="fas fa-bolt"></i> SMM PANEL & STREAMING SERVICE ENGINE</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                    <label class="block text-xs text-gray-400 uppercase font-bold mb-1">Select Service</label>
-                    <select id="inpService" onchange="calculateDynamicPrice()" class="w-full bg-[#0B132B] border border-gray-700 rounded-lg p-3 text-white text-sm">
-                        <option value="1" data-selling="150">Live Streamers Hosting Growth (1K)</option>
-                        <option value="2" data-selling="250">Virtual Gifting Boost Package (1K)</option>
-                        <option value="3" data-selling="90">Agency Partner Promotion (1K)</option>
-                    </select>
+                    <label class="block text-xs text-gray-400 uppercase font-bold mb-1">SMM Service Category</label>
+                    <select id="inpService" onchange="calculateDynamicPrice()" class="w-full bg-[#0B132B] border border-gray-700 rounded-lg p-3 text-white text-sm"></select>
                 </div>
                 <div>
                     <label class="block text-xs text-gray-400 uppercase font-bold mb-1">Quantity</label>
@@ -148,33 +178,54 @@
                 </div>
             </div>
             <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-                <input type="text" id="inpLink" placeholder="Target Profile / Stream Link URL" class="w-full bg-[#0B132B] border border-gray-700 rounded-lg p-3 text-white text-sm">
+                <input type="text" id="inpLink" placeholder="Target Link / Profile URL" class="w-full bg-[#0B132B] border border-gray-700 rounded-lg p-3 text-white text-sm">
                 <div class="flex gap-2">
                     <input type="text" id="inpTotalCharge" readonly class="w-1/2 bg-gray-900 border border-gray-700 rounded-lg p-3 text-yellow-400 font-bold text-center text-sm" value="₹150.00">
                     <button onclick="submitOrderProcess()" class="w-1/2 bg-yellow-500 text-black font-extrabold py-3 rounded-lg text-sm shadow hover:bg-yellow-400">Place Order</button>
                 </div>
             </div>
         </div>
-                <!-- MINE PROFILE OPTIONS -->
-        <div class="bg-[#1C2541] border border-yellow-500/20 p-6 rounded-2xl shadow-xl">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-lg font-bold text-yellow-400 flex items-center gap-2"><i class="fas fa-user-circle"></i> MINE PROFILE DASHBOARD</h2>
-                <span id="customUserTag" class="hidden text-xs bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded border border-yellow-500">VIP ELITE</span>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <div onclick="openProfileSection('agency')" class="bg-[#0B132B] p-3 rounded-lg border border-gray-800 hover:border-yellow-500 cursor-pointer flex items-center justify-between"><span class="text-xs font-bold text-gray-200"><i class="fas fa-users text-yellow-500 mr-2"></i> Agency</span><i class="fas fa-chevron-right text-xs text-gray-500"></i></div>
-                <div onclick="openProfileSection('level')" class="bg-[#0B132B] p-3 rounded-lg border border-gray-800 hover:border-yellow-500 cursor-pointer flex items-center justify-between"><span class="text-xs font-bold text-gray-200"><i class="fas fa-crown text-blue-400 mr-2"></i> Level</span><i class="fas fa-chevron-right text-xs text-gray-500"></i></div>
-                <div onclick="openProfileSection('store')" class="bg-[#0B132B] p-3 rounded-lg border border-gray-800 hover:border-yellow-500 cursor-pointer flex items-center justify-between"><span class="text-xs font-bold text-gray-200"><i class="fas fa-store text-emerald-400 mr-2"></i> Store</span><i class="fas fa-chevron-right text-xs text-gray-500"></i></div>
-                <div onclick="openProfileSection('tasks')" class="bg-[#0B132B] p-3 rounded-lg border border-gray-800 hover:border-yellow-500 cursor-pointer flex items-center justify-between"><span class="text-xs font-bold text-gray-200"><i class="fas fa-tasks text-purple-400 mr-2"></i> Tasks</span><i class="fas fa-chevron-right text-xs text-gray-500"></i></div>
-                <div onclick="openProfileSection('title')" class="bg-[#0B132B] p-3 rounded-lg border border-gray-800 hover:border-yellow-500 cursor-pointer flex items-center justify-between"><span class="text-xs font-bold text-gray-200"><i class="fas fa-award text-pink-400 mr-2"></i> Title</span><i class="fas fa-chevron-right text-xs text-gray-500"></i></div>
-                <div onclick="openProfileSection('medal')" class="bg-[#0B132B] p-3 rounded-lg border border-gray-800 hover:border-yellow-500 cursor-pointer flex items-center justify-between"><span class="text-xs font-bold text-gray-200"><i class="fas fa-medal text-amber-500 mr-2"></i> Medal</span><i class="fas fa-chevron-right text-xs text-gray-500"></i></div>
-                <div onclick="openProfileSection('invitation')" class="bg-[#0B132B] p-3 rounded-lg border border-gray-800 hover:border-yellow-500 cursor-pointer flex items-center justify-between"><span class="text-xs font-bold text-gray-200"><i class="fas fa-envelope text-red-400 mr-2"></i> Invitation</span><i class="fas fa-chevron-right text-xs text-gray-500"></i></div>
-                <div onclick="openProfileSection('bd')" class="bg-[#0B132B] p-3 rounded-lg border border-gray-800 hover:border-yellow-500 cursor-pointer flex items-center justify-between"><span class="text-xs font-bold text-gray-200"><i class="fas fa-user-tie text-cyan-400 mr-2"></i> BD Portal</span><i class="fas fa-chevron-right text-xs text-gray-500"></i></div>
-                <div onclick="openProfileSection('settings')" class="bg-[#0B132B] p-3 rounded-lg border border-gray-800 hover:border-yellow-500 cursor-pointer flex items-center justify-between"><span class="text-xs font-bold text-gray-200"><i class="fas fa-cog text-gray-300 mr-2"></i> Settings</span><i class="fas fa-chevron-right text-xs text-gray-500"></i></div>
-            </div>
-        </div>
 
-        <!-- TRACKING & UTILITY SECTION -->
+        <!-- User Profile & Mine Section -->
+        <div class="bg-[#1C2541] border border-yellow-500/20 p-6 rounded-2xl shadow-xl space-y-4">
+            <div class="bg-[#0B132B] p-4 rounded-xl border border-gray-800 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-500 to-amber-600 flex items-center justify-center font-bold text-black text-xl shadow-lg">V</div>
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span id="profileDisplayName" class="font-extrabold text-white text-base">ALONE 🇮🇳</span>
+                            <span id="customUserTag" class="hidden text-[10px] bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded border border-yellow-500">VIP ELITE</span>
+                        </div>
+                        <span class="text-xs text-gray-400">ID: 1354718</span>
+                    </div>
+                </div>
+                <div class="flex space-x-4 text-center text-xs text-gray-300">
+                    <div><b class="block text-white text-sm">3</b>Following</div>
+                    <div><b class="block text-white text-sm">16</b>Like</div>
+                    <div><b class="block text-white text-sm">13</b>Visitors</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div onclick="openProfileSection('Wallet')" class="bg-gradient-to-r from-teal-900/40 to-[#0B132B] border border-teal-500/30 p-3 rounded-xl cursor-pointer hover:border-teal-400 flex justify-between items-center">
+                    <div>
+                        <span class="text-teal-400 font-extrabold text-sm block">Wallet</span>
+                        <span class="text-[10px] text-gray-300">GO &gt; Balance: ₹12,450</span>
+                    </div>
+                    <i class="fas fa-wallet text-teal-400 text-xl"></i>
+                </div>
+                <div onclick="openProfileSection('VIP')" class="bg-gradient-to-r from-amber-900/40 to-[#0B132B] border border-yellow-500/30 p-3 rounded-xl cursor-pointer hover:border-yellow-400 flex justify-between items-center">
+                    <div>
+                        <span class="text-yellow-400 font-extrabold text-sm block">VIP Tier</span>
+                        <span class="text-[10px] text-gray-300">GO &gt; Elite Member</span>
+                    </div>
+                    <i class="fas fa-gem text-yellow-400 text-xl"></i>
+                </div>
+            </div>
+
+            <div id="mineGridContainer" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
+        </div>
+                <!-- Track & Inspect Section -->
         <div class="bg-[#1C2541] border border-yellow-500/20 p-6 rounded-2xl shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
                 <h3 class="text-sm font-bold text-yellow-400 uppercase mb-3">Live Order Tracker</h3>
@@ -199,12 +250,191 @@
 
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="bg-[#1C2541] border-t border-gray-800 text-center py-4 text-xs text-gray-400">
         &copy; 2026 V Media Ecosystem. Managed by Vinayak Global Dream. All rights reserved.
     </footer>
-        <script>
+        <!-- JavaScript Engine -->
+    <script>
         const currencyFactors = { INR: 1, NPR: 1.6, USD: 0.012, IDR: 195 };
+
+        let smmServices = [
+            { id: 101, name: "Instagram Followers Boost (1K)", provider: "V Media Native", rate: 150 },
+            { id: 102, name: "TikTok / Live Gifting Package (1K)", provider: "V Media Native", rate: 250 },
+            { id: 103, name: "YouTube / Telegram Subscribers (1K)", provider: "V Media Native", rate: 90 }
+        ];
+
+        let mineItems = [
+            { name: "Agency", icon: "fas fa-users text-yellow-500" },
+            { name: "Level", icon: "fas fa-crown text-blue-400" },
+            { name: "Store", icon: "fas fa-store text-emerald-400" },
+            { name: "Tasks", icon: "fas fa-tasks text-purple-400" },
+            { name: "Title", icon: "fas fa-award text-pink-400" },
+            { name: "Medal", icon: "fas fa-medal text-amber-500" },
+            { name: "Invitation", icon: "fas fa-envelope text-red-400" },
+            { name: "BD Portal", icon: "fas fa-user-tie text-cyan-400" },
+            { name: "Mass Orders", icon: "fas fa-list-alt text-yellow-400" },
+            { name: "SMM API", icon: "fas fa-code text-indigo-400" },
+            { name: "Settings", icon: "fas fa-cog text-gray-300" }
+        ];
+
+        function renderEverything() {
+            renderMineSection();
+            renderSmmServicesDropdown();
+            renderFounderServicesTable();
+        }
+
+        function renderMineSection() {
+            const grid = document.getElementById('mineGridContainer');
+            if(!grid) return;
+            grid.innerHTML = '';
+            mineItems.forEach((item) => {
+                const div = document.createElement('div');
+                div.className = "bg-[#0B132B] p-3 rounded-lg border border-gray-800 hover:border-yellow-500 cursor-pointer flex items-center justify-between";
+                div.innerHTML = `<span class="text-xs font-bold text-gray-200"><i class="${item.icon} mr-2"></i> ${item.name}</span><i class="fas fa-chevron-right text-xs text-gray-500"></i>`;
+                div.onclick = function() { openProfileSection(item.name); };
+                grid.appendChild(div);
+            });
+            renderFounderMineManager();
+        }
+
+        function renderFounderMineManager() {
+            const managerList = document.getElementById('founderMineManagerList');
+            if(!managerList) return;
+            managerList.innerHTML = '';
+            mineItems.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = "flex items-center justify-between bg-gray-900 p-2 rounded border border-gray-800 text-xs";
+                row.innerHTML = `
+                    <div class="flex items-center space-x-2">
+                        <i class="${item.icon}"></i>
+                        <span class="font-bold text-white">${item.name}</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <button onclick="moveMineItem(${index}, 'up')" class="bg-gray-800 hover:bg-gray-700 px-2 py-1 rounded text-yellow-400"><i class="fas fa-arrow-up text-[10px]"></i></button>
+                        <button onclick="moveMineItem(${index}, 'down')" class="bg-gray-800 hover:bg-gray-700 px-2 py-1 rounded text-yellow-400"><i class="fas fa-arrow-down text-[10px]"></i></button>
+                        <button onclick="renameMineItem(${index})" class="bg-blue-900/50 hover:bg-blue-800 px-2 py-1 rounded text-blue-400"><i class="fas fa-edit text-[10px]"></i></button>
+                        <button onclick="deleteMineItem(${index})" class="bg-red-900/50 hover:bg-red-800 px-2 py-1 rounded text-red-400"><i class="fas fa-trash text-[10px]"></i></button>
+                    </div>
+                `;
+                managerList.appendChild(row);
+            });
+        }
+
+        function renderSmmServicesDropdown() {
+            const sel = document.getElementById('inpService');
+            if(!sel) return;
+            sel.innerHTML = '';
+            smmServices.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.rate;
+                opt.setAttribute('data-provider', s.provider);
+                opt.textContent = `${s.name} (₹${s.rate}/1K)`;
+                sel.appendChild(opt);
+            });
+            calculateDynamicPrice();
+        }
+
+        function renderFounderServicesTable() {
+            const tbody = document.getElementById('founderServicesTableBody');
+            const countSpan = document.getElementById('totalServicesCount');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+            smmServices.forEach((s, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-gray-800 hover:bg-gray-900/50";
+                tr.innerHTML = `
+                    <td class="p-2.5 font-mono text-yellow-400">#${s.id}</td>
+                    <td class="p-2.5 font-bold text-white">${s.name}</td>
+                    <td class="p-2.5 text-gray-300">${s.provider}</td>
+                    <td class="p-2.5 text-emerald-400 font-bold">₹${s.rate}</td>
+                    <td class="p-2.5 text-center">
+                        <button onclick="deleteSmmService(${idx})" class="bg-red-900/40 hover:bg-red-800 text-red-400 px-2 py-1 rounded text-[10px]"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            if(countSpan) countSpan.innerText = smmServices.length;
+        }
+
+        function connectExternalSmmApi() {
+            const providerName = document.getElementById('apiProviderName').value.trim();
+            const apiUrl = document.getElementById('apiUrlInput').value.trim();
+            const apiKey = document.getElementById('apiKeyInput').value.trim();
+            const serviceId = document.getElementById('apiServiceId').value.trim();
+            const sellingRate = parseFloat(document.getElementById('apiSellingRate').value.trim());
+
+            if(!providerName || !apiUrl || !apiKey || !serviceId || isNaN(sellingRate)) {
+                alert("⚠️ Kripya sabhi API fields sahi se bharein!");
+                return;
+            }
+
+            const newService = {
+                id: parseInt(serviceId) + Math.floor(Math.random() * 900),
+                name: `[API Sync] External Service #${serviceId}`,
+                provider: providerName,
+                rate: sellingRate
+            };
+
+            smmServices.push(newService);
+            renderEverything();
+            alert(`✅ Success! Provider "${providerName}" Connected via API!`);
+            
+            document.getElementById('apiProviderName').value = '';
+            document.getElementById('apiUrlInput').value = '';
+            document.getElementById('apiKeyInput').value = '';
+            document.getElementById('apiServiceId').value = '';
+            document.getElementById('apiSellingRate').value = '';
+        }
+
+        function deleteSmmService(index) {
+            if(confirm("Kya aap is service ko delete karna chahte hain?")) {
+                smmServices.splice(index, 1);
+                renderEverything();
+                alert("🗑️ Service successfully removed!");
+            }
+        }
+
+        function moveMineItem(index, direction) {
+            if(direction === 'up' && index > 0) {
+                const temp = mineItems[index];
+                mineItems[index] = mineItems[index - 1];
+                mineItems[index - 1] = temp;
+            } else if(direction === 'down' && index < mineItems.length - 1) {
+                const temp = mineItems[index];
+                mineItems[index] = mineItems[index + 1];
+                mineItems[index + 1] = temp;
+            }
+            renderMineSection();
+        }
+
+        function renameMineItem(index) {
+            const newName = prompt("Is Mine option ka naya naam enter karein:", mineItems[index].name);
+            if(newName && newName.trim() !== "") {
+                mineItems[index].name = newName.trim();
+                renderMineSection();
+                alert("✨ Item ka naam successfully badal diya gaya hai!");
+            }
+        }
+
+        function deleteMineItem(index) {
+            if(confirm(`Kya aap "${mineItems[index].name}" ko delete karna chahte hain?`)) {
+                mineItems.splice(index, 1);
+                renderMineSection();
+                alert("🗑️ Item successfully delete ho gaya hai!");
+            }
+        }
+
+        function addNewMineItem() {
+            const name = document.getElementById('newFuncName').value.trim();
+            const icon = document.getElementById('newFuncIcon').value.trim() || 'fas fa-star text-yellow-400';
+            if(!name) { alert("Kripya item ka naam enter karein."); return; }
+            mineItems.push({ name: name, icon: icon });
+            renderMineSection();
+            alert(`✨ Success! "${name}" mine section mein add ho gaya hai.`);
+            document.getElementById('newFuncName').value = '';
+            document.getElementById('newFuncIcon').value = '';
+        }
 
         function togglePassword(fieldId, iconId) {
             const passInput = document.getElementById(fieldId);
@@ -244,12 +474,12 @@
         }
 
         function handleGoogleLogin() {
-            alert("🌐 Authenticating via Firebase Google OAuth...");
+            alert("🌐 Authenticating via Google OAuth...");
             authenticateUserSession("vinayakglobaldream@gmail.com");
         }
 
         function handlePhoneLoginPrompt() {
-            const phone = prompt("Enter phone number for OTP verification:");
+            const phone = prompt("OTP verification ke liye apna phone number enter karein:");
             if(phone) {
                 alert(`📱 OTP verified successfully for ${phone}!`);
                 authenticateUserSession("phone_user@vmedia.com");
@@ -281,17 +511,18 @@
                 document.getElementById('adminPanelSection').classList.add('hidden');
                 document.getElementById('userRoleBadge').innerText = "VIP TIER USER";
             }
-            calculateDynamicPrice();
+            renderEverything();
         }
-                    function handleSignup(e) {
+
+        function handleSignup(e) {
             e.preventDefault();
-            alert("Account successfully created! Please login now.");
+            alert("Account successfully created! Kripya ab login karein.");
             switchAuthView('login');
         }
 
         function handleForgot(e) {
             e.preventDefault();
-            alert("Password reset link sent to your email.");
+            alert("Password reset link aapke email par bhej diya gaya hai.");
             switchAuthView('login');
         }
 
@@ -302,8 +533,7 @@
         }
 
         function toggleThreeDotsMenu() {
-            const menu = document.getElementById('threeDotsDropdown');
-            menu.classList.toggle('hidden');
+            document.getElementById('threeDotsDropdown').classList.toggle('hidden');
         }
 
         function closeThreeDotsMenu() {
@@ -313,8 +543,7 @@
         function calculateDynamicPrice() {
             const sel = document.getElementById('inpService');
             if(!sel) return;
-            const opt = sel.options[sel.selectedIndex];
-            const baseRate = parseFloat(opt.getAttribute('data-selling')) || 0;
+            const baseRate = parseFloat(sel.value) || 0;
             const qty = parseFloat(document.getElementById('inpQty').value) || 0;
             const currencyCode = document.getElementById('currencyDropdown').value;
             const symbol = currencyCode === 'INR' ? '₹' : currencyCode === 'NPR' ? 'रू' : currencyCode === 'USD' ? '$' : 'Rp';
@@ -327,9 +556,12 @@
         function submitOrderProcess() {
             const link = document.getElementById('inpLink').value;
             const qty = document.getElementById('inpQty').value;
-            if(!link || !qty) { alert("Please fill target link and quantity!"); return; }
+            const sel = document.getElementById('inpService');
+            const provider = sel.options[sel.selectedIndex].getAttribute('data-provider') || 'V Media';
+            
+            if(!link || !qty) { alert("Kripya target link aur quantity bharein!"); return; }
             const mockId = Math.floor(100000 + Math.random() * 900000);
-            alert(`✅ Order Placed Successfully!\n\nOrder ID: #${mockId}\n📡 Telegram Webhook Notification Triggered.`);
+            alert(`✅ Order Placed Successfully via [ ${provider} ] API!\n\nOrder ID: #${mockId}`);
             document.getElementById('trackSearchId').value = mockId;
             executeTracking();
         }
@@ -337,36 +569,20 @@
         function executeTracking() {
             const id = document.getElementById('trackSearchId').value.trim();
             const container = document.getElementById('trackResultContainer');
-            if(!id) { alert("Enter valid Order ID."); return; }
+            if(!id) { alert("Valid Order ID enter karein."); return; }
             container.classList.remove('hidden');
             container.innerHTML = `
                 <div class="flex justify-between"><span class="text-gray-400">Order ID:</span><span class="font-bold text-white">#${id}</span></div>
-                <div class="flex justify-between"><span class="text-gray-400">Status:</span><span class="text-yellow-400 font-extrabold">Processing (Live)</span></div>
+                <div class="flex justify-between"><span class="text-gray-400">Status:</span><span class="text-yellow-400 font-extrabold">Processing (External API Relay Active)</span></div>
                 <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden mt-3">
                     <div class="bg-yellow-500 h-full w-3/4 animate-pulse"></div>
                 </div>
             `;
         }
 
-        function sendBroadcastNotification() {
-            const msg = document.getElementById('broadcastMsg').value.trim();
-            if(!msg) { alert("Please type a broadcast message."); return; }
-            alert(`📢 Broadcast Global Alert Sent Successfully to All Active Users & Agencies!\n\nMessage: "${msg}"`);
-            document.getElementById('broadcastMsg').value = '';
-        }
-
-        function createNewAdminPanel() {
-            const name = document.getElementById('newAdminName').value.trim();
-            const email = document.getElementById('newAdminEmail').value.trim();
-            if(!name || !email) { alert("Provide admin name and email."); return; }
-            alert(`🛡️ Regional Admin Portal Created Successfully!\n\nPortal Name: ${name}\nAssigned Email: ${email}`);
-            document.getElementById('newAdminName').value = '';
-            document.getElementById('newAdminEmail').value = '';
-        }
-
         function inspectUserAccount() {
             const query = document.getElementById('searchUserId').value.trim();
-            if(!query) { alert("Enter user ID or email to inspect."); return; }
+            if(!query) { alert("Inspection ke liye user ID ya email enter karein."); return; }
             const box = document.getElementById('inspectedUserBox');
             const details = document.getElementById('inspectedUserDetails');
             box.classList.remove('hidden');
@@ -374,18 +590,17 @@
                 <div><span class="text-gray-400 block">User:</span><b class="text-white">${query}</b></div>
                 <div><span class="text-gray-400 block">Balance:</span><b class="text-yellow-400">₹12,450</b></div>
                 <div><span class="text-gray-400 block">Completed Orders:</span><b class="text-white">142</b></div>
-                <div><span class="text-gray-400 block">Pending Orders:</span><b class="text-emerald-400">3</b></div>
             `;
         }
 
         function assignUserBadge(badgeName) {
-            alert(`⭐ Success! User badge updated to "${badgeName}" and enabled on their interface.`);
+            alert(`⭐ Success! User badge updated to "${badgeName}"`);
             document.getElementById('customUserTag').innerText = badgeName;
             document.getElementById('customUserTag').classList.remove('hidden');
         }
 
         function openProfileSection(sectionName) {
-            alert(`📂 Opening Profile Module: [ ${sectionName.toUpperCase()} ]\n\nLoading secure parameters and records for V Media Partner...`);
+            alert(`📂 Opening Profile Module: [ ${sectionName.toUpperCase()} ]`);
         }
     </script>
 </body>
