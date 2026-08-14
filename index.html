@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V Media - Ultimate Master SMM Panel</title>
+    <title>V Media - Global SMM Platform & Creator Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -11,6 +11,7 @@
         .v-logo-box { width: 42px; height: 42px; background: linear-gradient(135deg, #0A0F1D 0%, #1a2942 100%); border: 2px solid #D4AF37; border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; transition: transform 0.5s ease; }
         .v-logo-text { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 26px; background: linear-gradient(0deg, #D4AF37 0%, #F3E5AB 50%, #FFFFFF 100%); -webkit-background-clip: text; color: transparent; }
         .brand-title { font-weight: 900; letter-spacing: 1px; background: linear-gradient(to right, #FFFFFF, #D4AF37); -webkit-background-clip: text; color: transparent; margin-left: 10px; }
+        .glass { background: rgba(31, 41, 55, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
 <body class="bg-[#0A0F1D] text-white font-sans">
@@ -20,48 +21,74 @@
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
             <a href="#" class="v-logo-wrapper">
                 <div class="v-logo-box"><span class="v-logo-text">V</span></div>
-                <span class="brand-title">MEDIA</span>
+                <span id="navBrandTitle" class="brand-title">MEDIA</span>
             </a>
             <div class="flex items-center space-x-4">
-                <button onclick="openModal('loginModal')" class="text-gray-300 hover:text-white text-sm font-semibold">Login</button>
-                <button onclick="openModal('signupModal')" class="bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-bold px-4 py-2 rounded-xl text-sm shadow-lg">Get Started</button>
+                <select id="currencySelector" onchange="changeCurrency()" class="bg-gray-800 border border-gray-700 text-yellow-500 text-xs font-bold rounded-lg p-2 outline-none">
+                    <option value="INR">🇮🇳 INR (₹)</option>
+                    <option value="NPR">🇳🇵 NPR (रू)</option>
+                    <option value="USD">🇺🇸 USD ($)</option>
+                    <option value="IDR">🇮🇩 IDR (Rp)</option>
+                </select>
+                <div id="navAuthArea" class="flex items-center space-x-3">
+                    <span id="staffBadge" class="hidden px-3 py-1 bg-yellow-500/20 border border-yellow-500 text-yellow-400 text-xs font-bold rounded-lg"></span>
+                    <button onclick="openModal('loginModal')" class="text-gray-300 hover:text-white text-sm font-semibold">Login</button>
+                    <button onclick="openModal('signupModal')" class="bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-bold px-4 py-2 rounded-xl text-sm shadow-lg">Get Started</button>
+                </div>
             </div>
         </div>
     </header>
-
-    <!-- Hero Section -->
-    <section class="py-20 text-center">
-        <h1 class="text-4xl sm:text-6xl font-black mb-6">Boost Your Social Presence <br/> <span class="text-yellow-500">With V Media</span></h1>
-        <p class="text-gray-400 max-w-xl mx-auto mb-10 text-sm sm:text-base">The ultimate professional platform for creators, influencers, and agencies to scale growth instantly with automated tools.</p>
+        <!-- Public Hero Section -->
+    <section id="heroSection" class="py-16 text-center px-4">
+        <h1 class="text-4xl sm:text-6xl font-black mb-6">Boost Your Social Presence <br/> <span class="text-yellow-500">With V Media Global</span></h1>
+        <p class="text-gray-400 max-w-xl mx-auto mb-8 text-sm sm:text-base">Scale your creator network, agency voice-rooms, and social assets instantly with fully automated SMM technology.</p>
+        
+        <!-- Live Order Tracker Widget -->
+        <div class="max-w-md mx-auto bg-gray-800/90 border border-yellow-500/30 p-4 rounded-2xl shadow-2xl mb-12 flex gap-2">
+            <input type="text" id="trackOrderIdInput" placeholder="Enter Order ID to track live status..." class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-xs outline-none">
+            <button onclick="trackOrderLive()" class="bg-yellow-500 text-black font-bold px-4 rounded-xl text-xs hover:bg-yellow-600 transition">Track</button>
+        </div>
+        <div id="trackResultBox" class="hidden max-w-md mx-auto bg-gray-900 border border-gray-700 p-4 rounded-xl text-left text-xs mb-12"></div>
+        
         <button onclick="openModal('signupModal')" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-4 rounded-xl shadow-lg transition">Create Free Account</button>
     </section>
-        <!-- Features -->
-    <section class="py-16 bg-gray-900/50 border-y border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="p-8 rounded-2xl bg-gray-800/80 border border-gray-700 shadow-xl">
-                <i class="fa-solid fa-bolt text-yellow-500 text-3xl mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">Instant Delivery</h3>
-                <p class="text-gray-400 text-sm">Automated order processing within seconds across all channels.</p>
+        <!-- Cinematic Testimonials & Success Stories Section -->
+    <section id="testimonialSection" class="py-12 border-t border-gray-800 bg-[#070A14] text-center px-4">
+        <h2 class="text-2xl font-black text-yellow-500 mb-2">Trusted By Top Agency Owners</h2>
+        <p class="text-xs text-gray-400 mb-8">See what regional leaders and creators say about V Media.</p>
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-800/60 border border-gray-700 p-6 rounded-2xl text-left">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-yellow-500 font-bold flex items-center justify-center text-black">R</div>
+                    <div><h4 class="text-sm font-bold">Rajesh Thapa</h4><span class="text-[10px] text-yellow-500">Agency Partner, Nepal</span></div>
+                </div>
+                <p class="text-xs text-gray-300">"V Media's automated instant delivery and reliable support have completely automated our live-streaming host recruitment workflow."</p>
             </div>
-            <div class="p-8 rounded-2xl bg-gray-800/80 border border-gray-700 shadow-xl">
-                <i class="fa-solid fa-shield-halved text-yellow-500 text-3xl mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">100% Secure</h3>
-                <p class="text-gray-400 text-sm">Protected data architecture built specifically for modern agencies.</p>
+            <div class="bg-gray-800/60 border border-gray-700 p-6 rounded-2xl text-left">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-yellow-500 font-bold flex items-center justify-center text-black">A</div>
+                    <div><h4 class="text-sm font-bold">Ananya Sharma</h4><span class="text-[10px] text-yellow-500">Creator Hub Lead</span></div>
+                </div>
+                <p class="text-xs text-gray-300">"The new Live Tracker and VIP tier bonuses give our creators incredible confidence. Best panel in South Asia!"</p>
             </div>
-            <div class="p-8 rounded-2xl bg-gray-800/80 border border-gray-700 shadow-xl">
-                <i class="fa-solid fa-headset text-yellow-500 text-3xl mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">24/7 Support</h3>
-                <p class="text-gray-400 text-sm">Dedicated management team available round the clock for bulk orders.</p>
+            <div class="bg-gray-800/60 border border-gray-700 p-6 rounded-2xl text-left">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-yellow-500 font-bold flex items-center justify-center text-black">D</div>
+                    <div><h4 class="text-sm font-bold">Devendra Singh</h4><span class="text-[10px] text-yellow-500">Voice Agency Director</span></div>
+                </div>
+                <p class="text-xs text-gray-300">"Fast UPI deposits and absolute zero downtime. Our agency operations run smoothly 24x7 thanks to this platform."</p>
             </div>
         </div>
     </section>
-
-    <!-- User Main Dashboard (SMM Panel Core) -->
+        <!-- Client Dashboard -->
     <div id="userDashboard" class="hidden min-h-screen p-4 sm:p-10 max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b border-gray-800 pb-6 gap-4">
             <div>
-                <h1 class="text-3xl font-black text-yellow-500">V MEDIA - CLIENT DASHBOARD</h1>
-                <p class="text-sm text-gray-400">Manage orders, check live pricing, and add funds instantly.</p>
+                <h1 class="text-3xl font-black text-yellow-500">CLIENT DASHBOARD</h1>
+                <div class="flex items-center gap-3 mt-1">
+                    <p class="text-sm text-gray-400">Manage orders and funds seamlessly.</p>
+                    <span id="userVipBadge" class="px-3 py-0.5 bg-gradient-to-r from-yellow-600 to-yellow-400 text-black text-[10px] font-black rounded-full uppercase">VIP: Bronze</span>
+                </div>
             </div>
             <div class="flex items-center gap-4">
                 <div class="bg-gray-800 border border-yellow-500/40 px-4 py-2 rounded-xl text-sm">
@@ -78,22 +105,19 @@
                     <div>
                         <label class="block text-gray-400 text-xs mb-1">Service Category</label>
                         <select id="orderCategory" class="w-full p-3.5 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-                            <option value="instagram">Instagram Followers & Likes</option>
-                            <option value="youtube">YouTube Views & Subscribers</option>
-                            <option value="livestream">Live Streaming Engagement (Voice/Video Apps)</option>
-                            <option value="telegram">Telegram Members & Post Views</option>
+                            <option value="instagram">Instagram Followers & Engagement</option>
+                            <option value="livestream">Live Streaming & Voice Room Apps</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-gray-400 text-xs mb-1">Select Specific Service</label>
                         <select id="orderService" class="w-full p-3.5 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-                            <option value="101">High Quality Followers - [Ref: 30D] - ₹150 / 1000</option>
-                            <option value="102">Instant Non-Drop Likes - ₹50 / 1000</option>
-                            <option value="201">Real Active Live Stream Viewers - ₹300 / 1000</option>
+                            <option value="101">High Quality Followers - ₹150 / 1000</option>
+                            <option value="102">Live Room Engagement - ₹80 / 1000</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-gray-400 text-xs mb-1">Target Link / Profile URL</label>
+                        <label class="block text-gray-400 text-xs mb-1">Target Link / URL</label>
                         <input type="text" id="orderLink" placeholder="https://..." class="w-full p-3.5 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
                     </div>
                     <div class="grid grid-cols-2 gap-4">
@@ -102,7 +126,7 @@
                             <input type="number" id="orderQuantity" placeholder="1000" oninput="calculateTotal()" class="w-full p-3.5 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
                         </div>
                         <div>
-                            <label class="block text-gray-400 text-xs mb-1">Total Charge (₹)</label>
+                            <label class="block text-gray-400 text-xs mb-1">Total Charge</label>
                             <input type="text" id="orderTotalCharge" readonly placeholder="₹0.00" class="w-full p-3.5 rounded-xl bg-[#0A0F1D] border border-gray-700 text-yellow-500 font-bold outline-none text-sm">
                         </div>
                     </div>
@@ -113,214 +137,99 @@
             <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl flex flex-col justify-between">
                 <div>
                     <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-wallet mr-2"></i> Add Funds (UPI / QR)</h3>
-                    <p class="text-xs text-gray-400 mb-4">Scan QR code or pay via UPI ID directly, then submit your Transaction ID/UTR below.</p>
                     <div class="bg-[#0A0F1D] p-4 rounded-xl border border-gray-700 text-center mb-4">
                         <img id="displayQrImg" src="https://via.placeholder.com/150" alt="UPI QR Code" class="w-36 h-36 mx-auto mb-3 rounded-lg object-contain border border-yellow-500/30">
                         <p class="text-xs text-gray-300 font-mono" id="displayUpiId">UPI: vinayak@upi</p>
                     </div>
                     <div class="space-y-3">
-                        <input type="number" id="addAmount" placeholder="Amount in INR" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-                        <input type="text" id="txId" placeholder="Transaction ID / UTR Number" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
+                        <input type="number" id="addAmount" placeholder="Amount" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
+                        <input type="text" id="txId" placeholder="Transaction ID / UTR" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
                     </div>
                 </div>
                 <button onclick="submitFundsRequest()" class="mt-4 w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded-xl transition text-sm">Verify & Add Funds</button>
             </div>
         </div>
     </div>
-        <!-- Secret Founder / Admin Dashboard View -->
+
+    <!-- Master & Team Mini-Panel Dashboard -->
     <div id="adminDashboard" class="hidden min-h-screen p-4 sm:p-10 max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b border-gray-800 pb-6 gap-4">
             <div>
-                <h1 class="text-3xl font-black text-yellow-500">V MEDIA - FOUNDER PANEL</h1>
-                <p class="text-sm text-gray-400">Secured Full Control, AI Configuration, Payments, & Community Management Dashboard</p>
+                <h1 id="panelHeading" class="text-3xl font-black text-yellow-500">V MEDIA - FOUNDER PANEL</h1>
+                <p class="text-sm text-gray-400">Manage operations, webhooks, and team access.</p>
             </div>
-            <button onclick="auth.signOut().then(()=>location.reload())" class="bg-red-600 hover:bg-red-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg">Logout Secret Panel</button>
+            <button onclick="auth.signOut().then(()=>location.reload())" class="bg-red-600 hover:bg-red-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg">Logout Panel</button>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-gray-800/80 border border-yellow-500/40 p-6 rounded-2xl shadow-xl flex items-center justify-between">
-                <div>
-                    <p class="text-gray-400 text-xs font-bold uppercase">Total Users</p>
-                    <h3 id="statTotalUsers" class="text-3xl font-black text-yellow-500 mt-1">0</h3>
-                </div>
-                <div class="bg-yellow-500/10 p-4 rounded-xl text-yellow-500"><i class="fa-solid fa-users text-2xl"></i></div>
+        <div id="founderWebhookSection" class="hidden bg-gray-800/80 border border-yellow-500/40 p-6 rounded-2xl shadow-xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-bell mr-2"></i> Telegram / WhatsApp Bot Webhook Configuration</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <input type="text" id="telegramBotToken" placeholder="Telegram Bot Token" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-sm">
+                <input type="text" id="telegramChatId" placeholder="Telegram Chat / Group ID" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-sm">
             </div>
-            <div class="bg-gray-800/80 border border-yellow-500/40 p-6 rounded-2xl shadow-xl flex items-center justify-between">
-                <div>
-                    <p class="text-gray-400 text-xs font-bold uppercase">Total Payments Received</p>
-                    <h3 id="statTotalPayments" class="text-3xl font-black text-yellow-500 mt-1">₹0</h3>
-                </div>
-                <div class="bg-yellow-500/10 p-4 rounded-xl text-yellow-500"><i class="fa-solid fa-indian-rupee-sign text-2xl"></i></div>
-            </div>
-            <div class="bg-gray-800/80 border border-yellow-500/40 p-6 rounded-2xl shadow-xl flex items-center justify-between">
-                <div>
-                    <p class="text-gray-400 text-xs font-bold uppercase">Active AI Requests</p>
-                    <h3 id="statAiRequests" class="text-3xl font-black text-yellow-500 mt-1">0</h3>
-                </div>
-                <div class="bg-yellow-500/10 p-4 rounded-xl text-yellow-500"><i class="fa-solid fa-wand-magic-sparkles text-2xl"></i></div>
-            </div>
-        </div>
-
-        <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl mb-8">
-            <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-list-check mr-2"></i> Order Management System</h3>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-xs text-gray-300">
-                    <thead class="bg-gray-900 text-yellow-500 uppercase">
-                        <tr>
-                            <th class="p-3">User Email</th>
-                            <th class="p-3">Service ID</th>
-                            <th class="p-3">Link</th>
-                            <th class="p-3">Qty</th>
-                            <th class="p-3">Charge</th>
-                            <th class="p-3">Status</th>
-                            <th class="p-3">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminOrdersTable">
-                        <tr><td colspan="7" class="p-4 text-center text-gray-500">Loading orders...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="bg-gray-800/80 border border-yellow-500/40 p-6 rounded-2xl shadow-xl mb-8">
-            <h3 class="text-xl font-bold mb-2 text-yellow-500"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i> AI / Gemini API Key Settings</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-gray-400 text-xs mb-1">Gemini API Key</label>
-                    <input type="password" id="adminApiKeyInput" placeholder="Enter new AI / Gemini API Key..." class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-                </div>
-                <div>
-                    <label class="block text-gray-400 text-xs mb-1">AI Model Name</label>
-                    <input type="text" id="adminAiModelInput" placeholder="e.g. gemini-2.5-flash" value="gemini-2.5-flash" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-                </div>
-            </div>
-            <button onclick="saveAiSettings()" class="mt-4 bg-yellow-500 text-black font-bold px-6 py-2.5 rounded-xl hover:opacity-90 transition text-sm">Save AI Configuration</button>
-        </div>
-
-        <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl mb-8">
-            <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-wallet mr-2"></i> Payment Gateways & QR Configuration</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                    <label class="block text-gray-400 text-xs mb-1">UPI ID</label>
-                    <input type="text" id="upiId" placeholder="e.g. vinayak@upi" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-                </div>
-                <div>
-                    <label class="block text-gray-400 text-xs mb-1">Bank Name / IFSC</label>
-                    <input type="text" id="bankInfo" placeholder="e.g. Kotak / KKBK000123" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-                </div>
-                <div>
-                    <label class="block text-gray-400 text-xs mb-1">QR Code Image Link</label>
-                    <input type="text" id="qrImageUrl" placeholder="Paste QR image URL here" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-                </div>
-            </div>
-            <button onclick="savePaymentSettings()" class="mt-4 bg-yellow-500 text-black font-bold px-6 py-2.5 rounded-xl hover:opacity-90 transition text-sm">Save Payment Settings</button>
+            <button onclick="saveWebhookSettings()" class="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl text-sm hover:opacity-90">Save Webhook Settings</button>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl">
-                <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-bullhorn mr-2"></i> Global Notification System</h3>
-                <input type="text" id="adminNotifInput" placeholder="Type global announcement..." class="w-full p-3 mb-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-                <button onclick="sendGlobalNotification()" class="bg-yellow-500 text-black font-bold px-6 py-2.5 rounded-xl hover:opacity-90 transition text-sm">Broadcast Notice</button>
-            </div>
-            <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl">
-                <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-gift mr-2"></i> Giveaway / Offer Broadcast</h3>
-                <input type="text" id="adminGiveawayInput" placeholder="Giveaway message for group..." class="w-full p-3 mb-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-                <button onclick="runGiveaway()" class="bg-yellow-500 text-black font-bold px-6 py-2.5 rounded-xl hover:opacity-90 transition text-sm">Launch Giveaway to Group</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Floating Chat & Support Widgets -->
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-        <div id="chatBox" class="hidden mb-3 w-80 sm:w-96 h-[450px] bg-gray-900 border border-yellow-500 rounded-2xl p-4 shadow-2xl flex flex-col">
-            <div class="flex justify-between items-center border-b border-gray-800 pb-2 mb-2">
-                <div>
-                    <h4 class="font-bold text-yellow-500 text-sm">V Media Community Hub</h4>
-                    <div class="flex gap-3 text-xs mt-1">
-                        <button onclick="switchChatMode('GROUP')" id="btnGroupMode" class="text-yellow-500 font-bold underline">Group Chat</button>
-                        <button onclick="switchChatMode('PERSONAL')" id="btnPersonalMode" class="text-gray-400 hover:text-white">Private Support (DM)</button>
-                    </div>
+            <div id="sectionOrders" class="hidden bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl md:col-span-2">
+                <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-list-check mr-2"></i> Authorized Order Management</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-gray-300">
+                        <thead class="bg-gray-900 text-yellow-500 uppercase">
+                            <tr>
+                                <th class="p-3">Order ID</th>
+                                <th class="p-3">User Email</th>
+                                <th class="p-3">Link</th>
+                                <th class="p-3">Qty</th>
+                                <th class="p-3">Charge</th>
+                                <th class="p-3">Status</th>
+                                <th class="p-3">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminOrdersTable">
+                            <tr><td colspan="7" class="p-4 text-center text-gray-500">Loading orders...</td></tr>
+                        </tbody>
+                    </table>
                 </div>
-                <button onclick="document.getElementById('chatBox').classList.add('hidden')" class="text-gray-400 hover:text-white text-lg">&times;</button>
             </div>
-            <div id="chatMessages" class="flex-1 overflow-y-auto mb-3 text-xs text-gray-300 space-y-2 p-2 bg-[#0A0F1D]/50 rounded-xl"></div>
-            <div class="flex gap-2">
-                <input type="text" id="chatInput" placeholder="Type a message or giveaway reply..." class="flex-1 p-2.5 bg-[#0A0F1D] border border-gray-700 rounded-xl text-xs outline-none text-white">
-                <button onclick="sendChatMessage()" class="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl text-xs hover:opacity-90 transition">Send</button>
-            </div>
-        </div>
-        <div class="flex gap-3">
-            <button onclick="document.getElementById('chatBox').classList.toggle('hidden')" class="bg-yellow-500 hover:bg-yellow-600 text-black w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-105">
-                <i class="fa-solid fa-comments text-2xl"></i>
-            </button>
-            <button onclick="document.getElementById('waMenu').classList.toggle('hidden')" class="bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-105">
-                <i class="fab fa-whatsapp text-3xl"></i>
-            </button>
-        </div>
-        <div id="waMenu" class="hidden mt-3 bg-gray-900 border border-yellow-500 rounded-2xl p-4 shadow-2xl w-64">
-            <p class="text-xs text-gray-400 mb-2 font-bold uppercase tracking-wider">24x7 WhatsApp Support:</p>
-            <a href="https://wa.me/919702688696" target="_blank" class="block text-white hover:text-yellow-500 text-sm mb-2"><i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 97026 88696</a>
-            <a href="https://wa.me/918808722351" target="_blank" class="block text-white hover:text-yellow-500 text-sm"><i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 88087 22351</a>
         </div>
     </div>
-        <!-- Footer -->
-    <footer class="py-12 border-t border-gray-800 text-center text-gray-500 text-sm">
-        <p>&copy; 2026 V Media. All rights reserved. Built for professional social scaling.</p>
-        <p class="mt-2">Official Mail: <a href="mailto:vinayakglobaldream@gmail.com" class="text-yellow-500 hover:underline">vinayakglobaldream@gmail.com</a></p>
-    </footer>
+        <!-- Floating Chat Support Widget -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="document.getElementById('waMenu').classList.toggle('hidden')" class="bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-105">
+            <i class="fab fa-whatsapp text-3xl"></i>
+        </button>
+        <div id="waMenu" class="hidden mt-3 bg-gray-900 border border-yellow-500 rounded-2xl p-4 shadow-2xl w-64">
+            <p class="text-xs text-gray-400 mb-2 font-bold uppercase">24x7 Support:</p>
+            <a href="https://wa.me/919702688696" target="_blank" class="block text-white hover:text-yellow-500 text-sm mb-2"><i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 97026 88696</a>
+        </div>
+    </div>
 
-    <!-- Signup Modal -->
+    <!-- Modals -->
     <div id="signupModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
         <div class="bg-gray-900 p-8 rounded-2xl w-full max-w-md border border-yellow-500/40 relative shadow-2xl">
             <button onclick="closeModal('signupModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <div class="text-center mb-6">
-                <h2 class="text-white text-2xl font-bold">Create Account</h2>
-                <p class="text-gray-400 text-sm">Get your Unique Virtual ID instantly.</p>
-            </div>
-            <input type="email" id="signupEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-            <input type="password" id="signupPass" placeholder="Password" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-            <button onclick="handleSignup()" class="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-extrabold py-3.5 rounded-xl shadow-lg transition text-sm mb-4">Register & Generate ID</button>
-            <div class="relative flex py-2 items-center">
-                <div class="flex-grow border-t border-gray-700"></div>
-                <span class="flex-shrink mx-4 text-gray-500 text-xs">OR</span>
-                <div class="flex-grow border-t border-gray-700"></div>
-            </div>
-            <button onclick="handleGoogleLogin()" class="w-full mt-2 bg-white text-black font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-sm hover:bg-gray-100 transition">
-                <i class="fab fa-google text-red-500"></i> Sign up with Google
-            </button>
+            <h2 class="text-white text-2xl font-bold mb-6 text-center">Create Account</h2>
+            <input type="email" id="signupEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-sm">
+            <input type="password" id="signupPass" placeholder="Password" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-sm">
+            <button onclick="handleSignup()" class="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-extrabold py-3.5 rounded-xl text-sm">Register</button>
         </div>
     </div>
 
-    <!-- Login Modal -->
     <div id="loginModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
         <div class="bg-gray-900 p-8 rounded-2xl w-full max-w-md border border-gray-700 relative shadow-2xl">
             <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <div class="text-center mb-6">
-                <h2 class="text-white text-2xl font-bold">Panel Login</h2>
-                <p class="text-gray-400 text-sm">Founder login automatically unlocks secret admin panel.</p>
-            </div>
-            <input type="email" id="loginEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-            <input type="password" id="loginPass" placeholder="Password" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
-            <button onclick="handleLogin()" class="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-bold py-3.5 rounded-xl transition text-sm mb-4">Login</button>
-            <div class="relative flex py-2 items-center">
-                <div class="flex-grow border-t border-gray-700"></div>
-                <span class="flex-shrink mx-4 text-gray-500 text-xs">OR</span>
-                <div class="flex-grow border-t border-gray-700"></div>
-            </div>
-            <button onclick="handleGoogleLogin()" class="w-full mt-2 bg-white text-black font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-sm hover:bg-gray-100 transition">
-                <i class="fab fa-google text-red-500"></i> Continue with Google
-            </button>
+            <h2 class="text-white text-2xl font-bold mb-6 text-center">Panel Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-sm">
+            <input type="password" id="loginPass" placeholder="Password" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-sm">
+            <button onclick="handleLogin()" class="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-bold py-3.5 rounded-xl text-sm">Login</button>
         </div>
     </div>
-
-    <!-- Firebase SDKs -->
+        <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
 
-    <!-- Corrected Script Tag -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyBuGtoiOMTeue8LiBhX3RFleEHQNkMgf1o",
@@ -329,24 +238,31 @@
             projectId: "v-media-b23aa",
             storageBucket: "v-media-b23aa.firebasestorage.app",
             messagingSenderId: "334280064838",
-            appId: "1:334280064838:web:a8b4a4d474e16ed338ef47",
-            measurementId: "G-3VK7FME1CC"
+            appId: "1:334280064838:web:a8b4a4d474e16ed338ef47"
         };
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
-        const analytics = firebase.analytics();
 
-        const ADMIN_EMAIL = "vinayakglobaldream@gmail.com";
+        const FOUNDER_EMAIL = "vinayakglobaldream@gmail.com";
 
         function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        const currencyRates = { INR: 1, NPR: 1.6, USD: 0.012, IDR: 195 };
+        let currentCurrSymbol = "₹";
+
+        function changeCurrency() {
+            const sel = document.getElementById('currencySelector').value;
+            currentCurrSymbol = sel === 'INR' ? '₹' : sel === 'NPR' ? 'रू' : sel === 'USD' ? '$' : 'Rp';
+            calculateTotal();
+        }
 
         function handleSignup() {
             const email = document.getElementById('signupEmail').value;
             const pass = document.getElementById('signupPass').value;
             auth.createUserWithEmailAndPassword(email, pass)
-                .then(() => { alert("Account Created Successfully!"); closeModal('signupModal'); })
+                .then(() => { alert("Account Created!"); closeModal('signupModal'); })
                 .catch(err => alert(err.message));
         }
 
@@ -354,56 +270,81 @@
             const email = document.getElementById('loginEmail').value;
             const pass = document.getElementById('loginPass').value;
             auth.signInWithEmailAndPassword(email, pass)
-                .then(() => { closeModal('loginModal'); })
+                .then(() => closeModal('loginModal'))
                 .catch(err => alert(err.message));
         }
 
-        function handleGoogleLogin() {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider)
-                .then((result) => {
-                    alert("Successfully Logged In as " + result.user.email);
-                    closeModal('loginModal');
-                    closeModal('signupModal');
-                })
-                .catch((error) => {
-                    alert("Google Login Error: " + error.message);
-                });
+        function sendTelegramAlert(message) {
+            db.collection("settings").doc("webhook_config").get().then(doc => {
+                if(doc.exists && doc.data().botToken && doc.data().chatId) {
+                    const { botToken, chatId } = doc.data();
+                    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'Markdown' })
+                    }).catch(e => console.log(e));
+                }
+            });
         }
 
-        const serviceRates = { "101": 0.15, "102": 0.05, "201": 0.30 };
+        function saveWebhookSettings() {
+            const token = document.getElementById('telegramBotToken').value;
+            const chatId = document.getElementById('telegramChatId').value;
+            db.collection("settings").doc("webhook_config").set({ botToken: token, chatId: chatId }, { merge: true })
+                .then(() => alert("Webhook Saved Successfully!"));
+        }
 
+        function trackOrderLive() {
+            const orderId = document.getElementById('trackOrderIdInput').value.trim();
+            const box = document.getElementById('trackResultBox');
+            if(!orderId) { alert("Please enter Order ID"); return; }
+            
+            db.collection("orders").doc(orderId).get().then(doc => {
+                box.classList.remove('hidden');
+                if(!doc.exists) {
+                    box.innerHTML = `<p class="text-red-400">❌ Order ID not found. Please check and try again.</p>`;
+                    return;
+                }
+                const data = doc.data();
+                let progressWidth = data.status === 'Completed' ? '100%' : data.status === 'Processing' ? '50%' : '20%';
+                box.innerHTML = `
+                    <p class="mb-2"><b>Service:</b> ${data.service}</p>
+                    <p class="mb-2"><b>Status:</b> <span class="text-yellow-400 font-bold">${data.status}</span></p>
+                    <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden mt-3">
+                        <div class="bg-yellow-500 h-full transition-all duration-500" style="width: ${progressWidth}"></div>
+                    </div>
+                `;
+            });
+        }
+
+        const baseRates = { "101": 150, "102": 80 };
         function calculateTotal() {
             const serviceId = document.getElementById('orderService').value;
-            const qty = document.getElementById('orderQuantity').value;
-            const rate = serviceRates[serviceId] || 0.10;
-            const total = qty * rate;
-            document.getElementById('orderTotalCharge').value = "₹" + total.toFixed(2);
+            const qty = document.getElementById('orderQuantity').value || 0;
+            const curr = document.getElementById('currencySelector').value;
+            const rate = baseRates[serviceId] || 100;
+            const total = (qty / 1000) * rate * currencyRates[curr];
+            document.getElementById('orderTotalCharge').value = currentCurrSymbol + total.toFixed(2);
         }
 
         function submitOrder() {
             const user = auth.currentUser;
-            if(!user) { alert("Please login first to place an order."); return; }
+            if(!user) { alert("Please login first."); return; }
             const link = document.getElementById('orderLink').value;
             const qty = document.getElementById('orderQuantity').value;
             const total = document.getElementById('orderTotalCharge').value;
-
-            if(!link || !qty) { alert("Please fill all order details."); return; }
+            if(!link || !qty) { alert("Fill all details."); return; }
 
             db.collection("orders").add({
                 userEmail: user.email,
                 service: document.getElementById('orderService').value,
-                link: link,
-                quantity: qty,
-                charge: total,
-                status: "Pending",
+                link: link, quantity: qty, charge: total, status: "Pending",
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                alert("Order Placed Successfully!");
-                document.getElementById('orderLink').value = "";
-                document.getElementById('orderQuantity').value = "";
-                document.getElementById('orderTotalCharge').value = "";
-            }).catch(err => alert("Error: " + err.message));
+            }).then(ref => {
+                alert("Order Placed! Order ID: " + ref.id);
+                sendTelegramAlert(`🚨 *New Order Placed!*\n👤 User: ${user.email}\n📦 Qty: ${qty}\n💰 Charge: ${total}\n🆔 ID: \`${ref.id}\``);
+                document.getElementById('orderLink').value=""; document.getElementById('orderQuantity').value="";
+            });
         }
 
         function submitFundsRequest() {
@@ -411,42 +352,42 @@
             if(!user) { alert("Please login first."); return; }
             const amount = document.getElementById('addAmount').value;
             const txId = document.getElementById('txId').value;
-
-            if(!amount || !txId) { alert("Please fill amount and transaction ID."); return; }
+            if(!amount || !txId) { alert("Fill amount & TX ID."); return; }
 
             db.collection("fund_requests").add({
-                userEmail: user.email,
-                amount: parseFloat(amount),
-                transactionId: txId,
-                status: "Pending Verification",
+                userEmail: user.email, amount: parseFloat(amount), transactionId: txId, status: "Pending",
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
-                alert("Fund request submitted successfully!");
-                document.getElementById('addAmount').value = "";
-                document.getElementById('txId').value = "";
-            }).catch(err => alert("Error: " + err.message));
+                alert("Fund request submitted!");
+                sendTelegramAlert(`💸 *New Fund Request!*\n👤 User: ${user.email}\n💵 Amount: ${amount}\n🔖 UTR: ${txId}`);
+            });
         }
 
-        function loadAdminDashboardData() {
-            db.collection("orders").onSnapshot(snapshot => {
-                const uniqueUsers = new Set();
-                let aiReqCount = snapshot.size;
-                snapshot.forEach(doc => {
-                    if(doc.data().userEmail) uniqueUsers.add(doc.data().userEmail);
-                });
-                document.getElementById('statTotalUsers').innerText = uniqueUsers.size || 1;
-                document.getElementById('statAiRequests').innerText = aiReqCount;
-            });
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                document.getElementById('heroSection').classList.add('hidden');
+                document.getElementById('testimonialSection').classList.add('hidden');
+                
+                if (user.email === FOUNDER_EMAIL) {
+                    document.getElementById('adminDashboard').classList.remove('hidden');
+                    document.getElementById('userDashboard').classList.add('hidden');
+                    document.getElementById('founderWebhookSection').classList.remove('hidden');
+                    document.getElementById('sectionOrders').classList.remove('hidden');
+                    loadAdminOrders();
+                } else {
+                    document.getElementById('adminDashboard').classList.add('hidden');
+                    document.getElementById('userDashboard').classList.remove('hidden');
+                    document.getElementById('userVipBadge').innerText = "VIP: Gold (Agency Partner)";
+                }
+            } else {
+                document.getElementById('heroSection').classList.remove('hidden');
+                document.getElementById('testimonialSection').classList.remove('hidden');
+                document.getElementById('adminDashboard').classList.add('hidden');
+                document.getElementById('userDashboard').classList.add('hidden');
+            }
+        });
 
-            db.collection("fund_requests").onSnapshot(snapshot => {
-                let totalPayments = 0;
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    if(data.amount) totalPayments += Number(data.amount);
-                });
-                document.getElementById('statTotalPayments').innerText = "₹" + totalPayments;
-            });
-
+        function loadAdminOrders() {
             db.collection("orders").orderBy("timestamp", "desc").onSnapshot(snapshot => {
                 const tbody = document.getElementById('adminOrdersTable');
                 tbody.innerHTML = "";
@@ -456,165 +397,20 @@
                 }
                 snapshot.forEach(doc => {
                     const data = doc.data();
-                    const orderId = doc.id;
-                    const statusColor = data.status === "Completed" ? "text-green-400 font-bold" : "text-yellow-400 font-bold";
                     tbody.innerHTML += `
                         <tr class="border-b border-gray-800 hover:bg-gray-900/40">
-                            <td class="p-3">${data.userEmail || 'N/A'}</td>
-                            <td class="p-3">${data.service || 'N/A'}</td>
-                            <td class="p-3 truncate max-w-[120px]"><a href="${data.link}" target="_blank" class="text-yellow-500 underline">${data.link}</a></td>
-                            <td class="p-3">${data.quantity || '0'}</td>
-                            <td class="p-3">${data.charge || '₹0'}</td>
-                            <td class="p-3 ${statusColor}">${data.status || 'Pending'}</td>
-                            <td class="p-3">
-                                ${data.status !== 'Completed' ? 
-                                    `<button onclick="updateOrderStatus('${orderId}', 'Completed')" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-[10px] font-bold">Mark Completed</button>` : 
-                                    `<span class="text-gray-500">Done</span>`}
-                            </td>
+                            <td class="p-3 font-mono text-[10px] text-yellow-500">${doc.id}</td>
+                            <td class="p-3">${data.userEmail}</td>
+                            <td class="p-3 truncate max-w-[100px]"><a href="${data.link}" target="_blank" class="underline">${data.link}</a></td>
+                            <td class="p-3">${data.quantity}</td>
+                            <td class="p-3">${data.charge}</td>
+                            <td class="p-3 text-yellow-400 font-bold">${data.status}</td>
+                            <td class="p-3"><button onclick="db.collection('orders').doc('${doc.id}').update({status:'Completed'}); sendTelegramAlert('✅ Order ${doc.id} Completed!')" class="bg-green-600 px-2 py-1 rounded text-[10px] font-bold">Complete</button></td>
                         </tr>
                     `;
                 });
             });
         }
-
-        function updateOrderStatus(orderId, newStatus) {
-            db.collection("orders").doc(orderId).update({ status: newStatus }).catch(err => alert(err.message));
-        }
-
-        function saveAiSettings() {
-            const apiKey = document.getElementById('adminApiKeyInput').value;
-            const modelName = document.getElementById('adminAiModelInput').value;
-            db.collection("settings").doc("ai_config").set({
-                geminiApiKey: apiKey,
-                model: modelName,
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => alert("AI / Gemini API Settings Saved Successfully!"));
-        }
-
-        function savePaymentSettings() {
-            const upi = document.getElementById('upiId').value;
-            const bank = document.getElementById('bankInfo').value;
-            const qr = document.getElementById('qrImageUrl').value;
-            db.collection("settings").doc("payment_config").set({
-                upiId: upi,
-                bankDetails: bank,
-                qrCodeUrl: qr,
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => alert("Payment Settings Updated Successfully!"));
-        }
-
-        function sendGlobalNotification() {
-            const msg = document.getElementById('adminNotifInput').value;
-            if(!msg) return;
-            db.collection("system").doc("notification").set({
-                message: msg,
-                active: true,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => alert("Global Notification Broadcasted!"));
-        }
-
-        function runGiveaway() {
-            const msg = document.getElementById('adminGiveawayInput').value;
-            if(!msg) return;
-            db.collection("group_chat").add({
-                sender: "FOUNDER (GIVEAWAY)",
-                text: "🎁 GIVEAWAY ALERT: " + msg,
-                isGiveaway: true,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => alert("Giveaway broadcasted to group chat!"));
-        }
-
-        let chatMode = "GROUP";
-
-        function switchChatMode(mode) {
-            chatMode = mode;
-            if(mode === "GROUP") {
-                document.getElementById('btnGroupMode').className = "text-yellow-500 font-bold underline";
-                document.getElementById('btnPersonalMode').className = "text-gray-400 hover:text-white";
-            } else {
-                document.getElementById('btnPersonalMode').className = "text-yellow-500 font-bold underline";
-                document.getElementById('btnGroupMode').className = "text-gray-400 hover:text-white";
-            }
-            loadMessages();
-        }
-
-        function sendChatMessage() {
-            const text = document.getElementById('chatInput').value;
-            const user = auth.currentUser;
-            if(!text) return;
-            const collectionName = chatMode === "GROUP" ? "group_chat" : "private_chats";
-            const senderName = user ? user.email : "Guest User";
-
-            db.collection(collectionName).add({
-                sender: senderName,
-                text: text,
-                isAdmin: user && user.email === ADMIN_EMAIL,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            document.getElementById('chatInput').value = '';
-        }
-
-        function loadMessages() {
-            const collectionName = chatMode === "GROUP" ? "group_chat" : "private_chats";
-            db.collection(collectionName).orderBy("timestamp", "asc").onSnapshot(snapshot => {
-                const chatDiv = document.getElementById('chatMessages');
-                chatDiv.innerHTML = "";
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    let highlightClass = "bg-[#0A0F1D] p-2 rounded-lg";
-                    if(data.isGiveaway) {
-                        highlightClass = "bg-yellow-600/30 border border-yellow-500 p-2 rounded-lg my-1";
-                    }
-                    let senderBadge = `<b class="text-yellow-500">${data.sender}:</b>`;
-                    if(data.isAdmin || data.sender === ADMIN_EMAIL || data.sender.includes("FOUNDER")) {
-                        senderBadge = `<span class="bg-yellow-500 text-black font-extrabold text-[10px] px-1.5 py-0.5 rounded mr-1">ADMIN / FOUNDER</span><b class="text-yellow-400">${data.sender}:</b>`;
-                    }
-                    chatDiv.innerHTML += `<div class="${highlightClass}">${senderBadge} ${data.text}</div>`;
-                });
-                chatDiv.scrollTop = chatDiv.scrollHeight;
-            });
-        }
-
-        loadMessages();
-
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                if (user.email === ADMIN_EMAIL) {
-                    document.getElementById('adminDashboard').classList.remove('hidden');
-                    document.getElementById('userDashboard').classList.add('hidden');
-                    loadAdminDashboardData();
-                    
-                    db.collection("settings").doc("payment_config").get().then(doc => {
-                        if(doc.exists) {
-                            document.getElementById('upiId').value = doc.data().upiId || "";
-                            document.getElementById('bankInfo').value = doc.data().bankDetails || "";
-                            document.getElementById('qrImageUrl').value = doc.data().qrCodeUrl || "";
-                        }
-                    });
-
-                    db.collection("settings").doc("ai_config").get().then(doc => {
-                        if(doc.exists) {
-                            document.getElementById('adminApiKeyInput').value = doc.data().geminiApiKey || "";
-                            document.getElementById('adminAiModelInput').value = doc.data().model || "gemini-2.5-flash";
-                        }
-                    });
-                } else {
-                    document.getElementById('adminDashboard').classList.add('hidden');
-                    document.getElementById('userDashboard').classList.remove('hidden');
-                    
-                    db.collection("settings").doc("payment_config").get().then(doc => {
-                        if(doc.exists) {
-                            const data = doc.data();
-                            if(data.upiId) document.getElementById('displayUpiId').innerText = "UPI: " + data.upiId;
-                            if(data.qrCodeUrl) document.getElementById('displayQrImg').src = data.qrCodeUrl;
-                        }
-                    });
-                }
-            } else {
-                document.getElementById('adminDashboard').classList.add('hidden');
-                document.getElementById('userDashboard').classList.add('hidden');
-            }
-        });
     </script>
 </body>
 </html>
