@@ -24,7 +24,7 @@
                 <span id="navBrandTitle" class="brand-title">MEDIA</span>
             </a>
             <div class="flex items-center space-x-4">
-                <select id="currencySelector" onchange="changeCurrency()" class="bg-gray-800 border border-gray-700 text-yellow-500 text-xs font-bold rounded-lg p-2 outline-none">
+                <select id="currencySelector" onchange="changeCurrency()" class="bg-gray-800 border border-gray-700 text-yellow-500 text-xs font-bold rounded-lg p-2 outline-none cursor-pointer">
                     <option value="INR">🇮🇳 INR (₹)</option>
                     <option value="NPR">🇳🇵 NPR (रू)</option>
                     <option value="USD">🇺🇸 USD ($)</option>
@@ -32,23 +32,24 @@
                 </select>
                 <div id="navAuthArea" class="flex items-center space-x-3">
                     <span id="staffBadge" class="hidden px-3 py-1 bg-yellow-500/20 border border-yellow-500 text-yellow-400 text-xs font-bold rounded-lg"></span>
-                    <button onclick="openModal('loginModal')" class="text-gray-300 hover:text-white text-sm font-semibold">Login</button>
-                    <button onclick="openModal('signupModal')" class="bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-bold px-4 py-2 rounded-xl text-sm shadow-lg">Get Started</button>
+                    <button onclick="openModal('loginModal')" class="text-gray-300 hover:text-white text-sm font-semibold transition">Login</button>
+                    <button onclick="openModal('signupModal')" class="bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-bold px-4 py-2 rounded-xl text-sm shadow-lg hover:opacity-90 transition">Get Started</button>
                 </div>
             </div>
         </div>
     </header>
-        <!-- Public Hero Section -->
+
+    <!-- Public Hero Section -->
     <section id="heroSection" class="py-16 text-center px-4">
         <h1 class="text-4xl sm:text-6xl font-black mb-6">Boost Your Social Presence <br/> <span class="text-yellow-500">With V Media Global</span></h1>
         <p class="text-gray-400 max-w-xl mx-auto mb-8 text-sm sm:text-base">Scale your creator network, agency voice-rooms, and social assets instantly with fully automated SMM technology.</p>
         
         <!-- Live Order Tracker Widget -->
-        <div class="max-w-md mx-auto bg-gray-800/90 border border-yellow-500/30 p-4 rounded-2xl shadow-2xl mb-12 flex gap-2">
+        <div class="max-w-md mx-auto bg-gray-800/90 border border-yellow-500/30 p-4 rounded-2xl shadow-2xl mb-6 flex gap-2">
             <input type="text" id="trackOrderIdInput" placeholder="Enter Order ID to track live status..." class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-xs outline-none">
-            <button onclick="trackOrderLive()" class="bg-yellow-500 text-black font-bold px-4 rounded-xl text-xs hover:bg-yellow-600 transition">Track</button>
+            <button onclick="trackOrderLive()" class="bg-yellow-500 text-black font-bold px-5 rounded-xl text-xs hover:bg-yellow-600 transition">Track</button>
         </div>
-        <div id="trackResultBox" class="hidden max-w-md mx-auto bg-gray-900 border border-gray-700 p-4 rounded-xl text-left text-xs mb-12"></div>
+        <div id="trackResultBox" class="hidden max-w-md mx-auto bg-gray-900 border border-gray-700 p-4 rounded-xl text-left text-xs mb-12 shadow-xl"></div>
         
         <button onclick="openModal('signupModal')" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-4 rounded-xl shadow-lg transition">Create Free Account</button>
     </section>
@@ -57,21 +58,21 @@
         <h2 class="text-2xl font-black text-yellow-500 mb-2">Trusted By Top Agency Owners</h2>
         <p class="text-xs text-gray-400 mb-8">See what regional leaders and creators say about V Media.</p>
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-gray-800/60 border border-gray-700 p-6 rounded-2xl text-left">
+            <div class="bg-gray-800/60 border border-gray-700 p-6 rounded-2xl text-left shadow-lg">
                 <div class="flex items-center gap-3 mb-3">
                     <div class="w-10 h-10 rounded-full bg-yellow-500 font-bold flex items-center justify-center text-black">R</div>
                     <div><h4 class="text-sm font-bold">Rajesh Thapa</h4><span class="text-[10px] text-yellow-500">Agency Partner, Nepal</span></div>
                 </div>
                 <p class="text-xs text-gray-300">"V Media's automated instant delivery and reliable support have completely automated our live-streaming host recruitment workflow."</p>
             </div>
-            <div class="bg-gray-800/60 border border-gray-700 p-6 rounded-2xl text-left">
+            <div class="bg-gray-800/60 border border-gray-700 p-6 rounded-2xl text-left shadow-lg">
                 <div class="flex items-center gap-3 mb-3">
                     <div class="w-10 h-10 rounded-full bg-yellow-500 font-bold flex items-center justify-center text-black">A</div>
                     <div><h4 class="text-sm font-bold">Ananya Sharma</h4><span class="text-[10px] text-yellow-500">Creator Hub Lead</span></div>
                 </div>
                 <p class="text-xs text-gray-300">"The new Live Tracker and VIP tier bonuses give our creators incredible confidence. Best panel in South Asia!"</p>
             </div>
-            <div class="bg-gray-800/60 border border-gray-700 p-6 rounded-2xl text-left">
+            <div class="bg-gray-800/60 border border-gray-700 p-6 rounded-2xl text-left shadow-lg">
                 <div class="flex items-center gap-3 mb-3">
                     <div class="w-10 h-10 rounded-full bg-yellow-500 font-bold flex items-center justify-center text-black">D</div>
                     <div><h4 class="text-sm font-bold">Devendra Singh</h4><span class="text-[10px] text-yellow-500">Voice Agency Director</span></div>
@@ -80,7 +81,8 @@
             </div>
         </div>
     </section>
-        <!-- Client Dashboard -->
+
+    <!-- Client Dashboard -->
     <div id="userDashboard" class="hidden min-h-screen p-4 sm:p-10 max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b border-gray-800 pb-6 gap-4">
             <div>
@@ -111,7 +113,7 @@
                     </div>
                     <div>
                         <label class="block text-gray-400 text-xs mb-1">Select Specific Service</label>
-                        <select id="orderService" class="w-full p-3.5 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
+                        <select id="orderService" onchange="calculateTotal()" class="w-full p-3.5 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white outline-none text-sm">
                             <option value="101">High Quality Followers - ₹150 / 1000</option>
                             <option value="102">Live Room Engagement - ₹80 / 1000</option>
                         </select>
@@ -133,12 +135,11 @@
                     <button onclick="submitOrder()" class="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-extrabold py-3.5 rounded-xl shadow-lg transition text-sm">Submit Order</button>
                 </div>
             </div>
-
-            <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl flex flex-col justify-between">
+                        <div class="bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl flex flex-col justify-between">
                 <div>
                     <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-wallet mr-2"></i> Add Funds (UPI / QR)</h3>
                     <div class="bg-[#0A0F1D] p-4 rounded-xl border border-gray-700 text-center mb-4">
-                        <img id="displayQrImg" src="https://via.placeholder.com/150" alt="UPI QR Code" class="w-36 h-36 mx-auto mb-3 rounded-lg object-contain border border-yellow-500/30">
+                        <img id="displayQrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=vinayak@upi&pn=VMedia" alt="UPI QR Code" class="w-36 h-36 mx-auto mb-3 rounded-lg object-contain border border-yellow-500/30">
                         <p class="text-xs text-gray-300 font-mono" id="displayUpiId">UPI: vinayak@upi</p>
                     </div>
                     <div class="space-y-3">
@@ -167,65 +168,9 @@
                 <input type="text" id="telegramBotToken" placeholder="Telegram Bot Token" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-sm">
                 <input type="text" id="telegramChatId" placeholder="Telegram Chat / Group ID" class="w-full p-3 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-sm">
             </div>
-            <button onclick="saveWebhookSettings()" class="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl text-sm hover:opacity-90">Save Webhook Settings</button>
+            <button onclick="saveWebhookSettings()" class="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl text-sm hover:bg-yellow-600 transition">Save Webhook Settings</button>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div id="sectionOrders" class="hidden bg-gray-800/80 border border-gray-700 p-6 rounded-2xl shadow-xl md:col-span-2">
-                <h3 class="text-xl font-bold mb-4 text-yellow-500"><i class="fa-solid fa-list-check mr-2"></i> Authorized Order Management</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs text-gray-300">
-                        <thead class="bg-gray-900 text-yellow-500 uppercase">
-                            <tr>
-                                <th class="p-3">Order ID</th>
-                                <th class="p-3">User Email</th>
-                                <th class="p-3">Link</th>
-                                <th class="p-3">Qty</th>
-                                <th class="p-3">Charge</th>
-                                <th class="p-3">Status</th>
-                                <th class="p-3">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminOrdersTable">
-                            <tr><td colspan="7" class="p-4 text-center text-gray-500">Loading orders...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-        <!-- Floating Chat Support Widget -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <button onclick="document.getElementById('waMenu').classList.toggle('hidden')" class="bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-105">
-            <i class="fab fa-whatsapp text-3xl"></i>
-        </button>
-        <div id="waMenu" class="hidden mt-3 bg-gray-900 border border-yellow-500 rounded-2xl p-4 shadow-2xl w-64">
-            <p class="text-xs text-gray-400 mb-2 font-bold uppercase">24x7 Support:</p>
-            <a href="https://wa.me/919702688696" target="_blank" class="block text-white hover:text-yellow-500 text-sm mb-2"><i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 97026 88696</a>
-        </div>
-    </div>
-
-    <!-- Modals -->
-    <div id="signupModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-        <div class="bg-gray-900 p-8 rounded-2xl w-full max-w-md border border-yellow-500/40 relative shadow-2xl">
-            <button onclick="closeModal('signupModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <h2 class="text-white text-2xl font-bold mb-6 text-center">Create Account</h2>
-            <input type="email" id="signupEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-sm">
-            <input type="password" id="signupPass" placeholder="Password" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-sm">
-            <button onclick="handleSignup()" class="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-extrabold py-3.5 rounded-xl text-sm">Register</button>
-        </div>
-    </div>
-
-    <div id="loginModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-        <div class="bg-gray-900 p-8 rounded-2xl w-full max-w-md border border-gray-700 relative shadow-2xl">
-            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <h2 class="text-white text-2xl font-bold mb-6 text-center">Panel Login</h2>
-            <input type="email" id="loginEmail" placeholder="Email Address" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-sm">
-            <input type="password" id="loginPass" placeholder="Password" class="w-full p-3.5 mb-4 rounded-xl bg-[#0A0F1D] border border-gray-700 text-white text-sm">
-            <button onclick="handleLogin()" class="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-bold py-3.5 rounded-xl text-sm">Login</button>
-        </div>
-    </div>
-        <!-- Firebase SDKs -->
+            <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
@@ -262,7 +207,7 @@
             const email = document.getElementById('signupEmail').value;
             const pass = document.getElementById('signupPass').value;
             auth.createUserWithEmailAndPassword(email, pass)
-                .then(() => { alert("Account Created!"); closeModal('signupModal'); })
+                .then(() => { alert("Account Created Successfully!"); closeModal('signupModal'); })
                 .catch(err => alert(err.message));
         }
 
@@ -291,7 +236,7 @@
             const token = document.getElementById('telegramBotToken').value;
             const chatId = document.getElementById('telegramChatId').value;
             db.collection("settings").doc("webhook_config").set({ botToken: token, chatId: chatId }, { merge: true })
-                .then(() => alert("Webhook Saved Successfully!"));
+                .then(() => alert("Webhook Settings Saved Successfully!"));
         }
 
         function trackOrderLive() {
@@ -308,12 +253,16 @@
                 const data = doc.data();
                 let progressWidth = data.status === 'Completed' ? '100%' : data.status === 'Processing' ? '50%' : '20%';
                 box.innerHTML = `
-                    <p class="mb-2"><b>Service:</b> ${data.service}</p>
+                    <p class="mb-2"><b>Service ID:</b> ${data.service}</p>
+                    <p class="mb-2"><b>Target Link:</b> <a href="${data.link}" target="_blank" class="text-yellow-400 underline">${data.link}</a></p>
                     <p class="mb-2"><b>Status:</b> <span class="text-yellow-400 font-bold">${data.status}</span></p>
                     <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden mt-3">
                         <div class="bg-yellow-500 h-full transition-all duration-500" style="width: ${progressWidth}"></div>
                     </div>
                 `;
+            }).catch(err => {
+                box.classList.remove('hidden');
+                box.innerHTML = `<p class="text-red-400">Error tracking order: ${err.message}</p>`;
             });
         }
 
@@ -344,7 +293,7 @@
                 alert("Order Placed! Order ID: " + ref.id);
                 sendTelegramAlert(`🚨 *New Order Placed!*\n👤 User: ${user.email}\n📦 Qty: ${qty}\n💰 Charge: ${total}\n🆔 ID: \`${ref.id}\``);
                 document.getElementById('orderLink').value=""; document.getElementById('orderQuantity').value="";
-            });
+            }).catch(err => alert(err.message));
         }
 
         function submitFundsRequest() {
@@ -352,15 +301,16 @@
             if(!user) { alert("Please login first."); return; }
             const amount = document.getElementById('addAmount').value;
             const txId = document.getElementById('txId').value;
-            if(!amount || !txId) { alert("Fill amount & TX ID."); return; }
+            if(!amount || !txId) { alert("Fill amount & Transaction ID."); return; }
 
             db.collection("fund_requests").add({
                 userEmail: user.email, amount: parseFloat(amount), transactionId: txId, status: "Pending",
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
-                alert("Fund request submitted!");
+                alert("Fund request submitted successfully!");
                 sendTelegramAlert(`💸 *New Fund Request!*\n👤 User: ${user.email}\n💵 Amount: ${amount}\n🔖 UTR: ${txId}`);
-            });
+                document.getElementById('addAmount').value=""; document.getElementById('txId').value="";
+            }).catch(err => alert(err.message));
         }
 
         auth.onAuthStateChanged(user => {
@@ -374,10 +324,22 @@
                     document.getElementById('founderWebhookSection').classList.remove('hidden');
                     document.getElementById('sectionOrders').classList.remove('hidden');
                     loadAdminOrders();
+                    
+                    db.collection("settings").doc("webhook_config").get().then(doc => {
+                        if(doc.exists) {
+                            document.getElementById('telegramBotToken').value = doc.data().botToken || '';
+                            document.getElementById('telegramChatId').value = doc.data().chatId || '';
+                        }
+                    });
                 } else {
                     document.getElementById('adminDashboard').classList.add('hidden');
                     document.getElementById('userDashboard').classList.remove('hidden');
-                    document.getElementById('userVipBadge').innerText = "VIP: Gold (Agency Partner)";
+                    
+                    db.collection("orders").where("userEmail", "==", user.email).get().then(snapshot => {
+                        let count = snapshot.size;
+                        let tier = count > 10 ? "VIP: Diamond (Elite Partner)" : count > 5 ? "VIP: Gold (Agency Partner)" : "VIP: Bronze Partner";
+                        document.getElementById('userVipBadge').innerText = tier;
+                    });
                 }
             } else {
                 document.getElementById('heroSection').classList.remove('hidden');
@@ -401,11 +363,11 @@
                         <tr class="border-b border-gray-800 hover:bg-gray-900/40">
                             <td class="p-3 font-mono text-[10px] text-yellow-500">${doc.id}</td>
                             <td class="p-3">${data.userEmail}</td>
-                            <td class="p-3 truncate max-w-[100px]"><a href="${data.link}" target="_blank" class="underline">${data.link}</a></td>
+                            <td class="p-3 truncate max-w-[100px]"><a href="${data.link}" target="_blank" class="underline text-yellow-400">${data.link}</a></td>
                             <td class="p-3">${data.quantity}</td>
                             <td class="p-3">${data.charge}</td>
                             <td class="p-3 text-yellow-400 font-bold">${data.status}</td>
-                            <td class="p-3"><button onclick="db.collection('orders').doc('${doc.id}').update({status:'Completed'}); sendTelegramAlert('✅ Order ${doc.id} Completed!')" class="bg-green-600 px-2 py-1 rounded text-[10px] font-bold">Complete</button></td>
+                            <td class="p-3"><button onclick="db.collection('orders').doc('${doc.id}').update({status:'Completed'}); sendTelegramAlert('✅ Order ${doc.id} Completed!')" class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-[10px] font-bold text-white transition">Complete</button></td>
                         </tr>
                     `;
                 });
